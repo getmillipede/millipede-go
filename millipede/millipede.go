@@ -16,11 +16,14 @@ type Millipede struct {
 	// Size is the amount of feet pairs
 	Size uint64
 
-	// Reverse is the flag that indicates the direction
+	// Reverse is the flag that indicates the direction (up/down)
 	Reverse bool
 
 	// Skin is the current millipede skin (template)
 	Skin string
+
+	// Opposite is the flag that indicates the direction (left/right)
+	Opposite bool
 }
 
 type Skin struct {
@@ -36,6 +39,9 @@ type Skin struct {
 // String returns a string representing a millipede
 func (m *Millipede) String() string {
 	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
+	if m.Opposite {
+		paddingOffsets = []string{"  ", "   ", "    ", "    ", "   ", "  ", " ", "", " "}
+	}
 
 	skins := map[string]Skin{
 		"default": {
@@ -116,8 +122,9 @@ func (m *Millipede) String() string {
 // New returns a millipede
 func New(size uint64) *Millipede {
 	return &Millipede{
-		Size:    size,
-		Reverse: false,
-		Skin:    "default",
+		Size:     size,
+		Reverse:  false,
+		Skin:     "default",
+		Opposite: false,
 	}
 }

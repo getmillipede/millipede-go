@@ -25,6 +25,10 @@ func main() {
 			Name:  "reverse, r",
 			Usage: "reverse the millipede",
 		},
+		cli.BoolFlag{
+			Name:  "opposite, o",
+			Usage: "go the opposite direction",
+		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
 			Usage: "millipede skin (default)",
@@ -44,9 +48,10 @@ func main() {
 		}
 
 		millipede := &millipede.Millipede{
-			Size:    size,
-			Reverse: c.Bool("reverse"),
-			Skin:    c.String("skin"),
+			Size:     size,
+			Reverse:  c.Bool("reverse"),
+			Skin:     c.String("skin"),
+			Opposite: c.Bool("opposite"),
 		}
 		fmt.Println(millipede)
 	}
