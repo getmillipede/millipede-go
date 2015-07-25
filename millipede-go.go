@@ -20,6 +20,13 @@ func main() {
 	app.Version = version.VERSION + " (" + version.GITCOMMIT + ")"
 	app.Usage = "Print a beautiful millipede"
 
+	app.Flags = []cli.Flag{
+		cli.BoolFlag{
+			Name:  "reverse, r",
+			Usage: "reverse the millipede",
+		},
+	}
+
 	app.Action = func(c *cli.Context) {
 		var size uint64
 		var err error
@@ -32,7 +39,8 @@ func main() {
 		}
 
 		millipede := &millipede.Millipede{
-			Size: size,
+			Size:    size,
+			Reverse: c.Bool("reverse"),
 		}
 		fmt.Println(millipede)
 	}
