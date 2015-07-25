@@ -25,6 +25,11 @@ func main() {
 			Name:  "reverse, r",
 			Usage: "reverse the millipede",
 		},
+		cli.StringFlag{
+			Name:  "skin, template, s, t",
+			Usage: "millipede skin (default)",
+			Value: "default",
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -41,6 +46,7 @@ func main() {
 		millipede := &millipede.Millipede{
 			Size:    size,
 			Reverse: c.Bool("reverse"),
+			Skin:    c.String("skin"),
 		}
 		fmt.Println(millipede)
 	}
