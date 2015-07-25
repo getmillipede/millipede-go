@@ -1,5 +1,6 @@
 // Package millipede provides a framework for creating millipedes.
-// millipede is designed to be easy to understand and write, the most simple application can be written as follow:
+// millipede is designed to be easy to understand and write, the most simple
+// application can be written as follow:
 //   func main() {
 //     fmt.Println(millipede.New(20))
 //   }
@@ -43,13 +44,13 @@ func (m Millipede) Reverse() Millipede {
 
 // Millipede returns a string representing a millipede of the specified size
 func New(size uint64) Millipede {
-	paddingOffsets := []Pede{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
+	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
 
 	milli := Millipede{"    ╚⊙ ⊙╝"}
 	var x uint64
 	for x = 0; x < size; x++ {
 		line := paddingOffsets[x%9] + "╚═(███)═╝"
-		milli = append(milli, line)
+		milli = append(milli, Pede(line))
 	}
 
 	return milli
