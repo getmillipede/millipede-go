@@ -5,21 +5,9 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
+
+	millipede "github.com/getmillipede/millipede-go/millipede"
 )
-
-func millipede(size uint64) string {
-	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
-
-	bodyLines := []string{"    ╚⊙ ⊙╝"}
-	var x uint64
-	for x = 0; x < size; x++ {
-		line := paddingOffsets[x%9] + "╚═(███)═╝"
-		bodyLines = append(bodyLines, line)
-	}
-
-	return strings.Join(bodyLines, "\n")
-}
 
 func main() {
 	flag.Parse()
@@ -35,5 +23,5 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(millipede(size))
+	fmt.Println(millipede.Millipede(size))
 }
