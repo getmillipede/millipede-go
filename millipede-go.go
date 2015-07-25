@@ -8,7 +8,7 @@ import (
 
 	"github.com/codegangsta/cli"
 
-	millipede "github.com/getmillipede/millipede-go/millipede"
+	"github.com/getmillipede/millipede-go/millipede"
 	"github.com/getmillipede/millipede-go/version"
 )
 
@@ -30,7 +30,7 @@ func main() {
 				panic(err)
 			}
 		}
-		fmt.Println(millipede.Millipede(size))
+		fmt.Println(millipede.New(size))
 	}
 	app.Run(os.Args)
 }
