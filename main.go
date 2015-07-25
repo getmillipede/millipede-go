@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	millipede "github.com/getmillipede/millipede-go/millipede"
+	"github.com/getmillipede/millipede-go/millipede"
 )
 
 func main() {
@@ -23,5 +23,5 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(millipede.Millipede(size))
+	fmt.Println(millipede.New(size))
 }

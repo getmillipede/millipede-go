@@ -1,7 +1,7 @@
 // Package millipede provides a framework for creating millipedes.
 // millipede is designed to be easy to understand and write, the most simple application can be written as follow:
 //   func main() {
-//     fmt.Println(millipede.Millipede(20))
+//     fmt.Println(millipede.New(20))
 //   }
 package millipede
 
@@ -9,8 +9,10 @@ import (
 	"strings"
 )
 
+type Millipede string
+
 // Millipede returns a string representing a millipede of the specified size
-func Millipede(size uint64) string {
+func New(size uint64) Millipede {
 	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
 
 	bodyLines := []string{"    ╚⊙ ⊙╝"}
@@ -20,5 +22,5 @@ func Millipede(size uint64) string {
 		bodyLines = append(bodyLines, line)
 	}
 
-	return strings.Join(bodyLines, "\n")
+	return Millipede(strings.Join(bodyLines, "\n"))
 }
