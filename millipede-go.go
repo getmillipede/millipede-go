@@ -7,8 +7,8 @@ import (
 
 	"github.com/codegangsta/cli"
 
-	"github.com/tehmoon/millipede-go/millipede"
-	"github.com/tehmoon/millipede-go/version"
+	"github.com/getmillipede/millipede-go/millipede"
+	"github.com/getmillipede/millipede-go/version"
 )
 
 func main() {
