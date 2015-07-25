@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path"
 	"strconv"
@@ -31,10 +30,11 @@ func main() {
 			}
 		}
 
-		millipede := &millipede.Millipede{
-			Size: size,
-		}
-		fmt.Println(millipede)
+		m := millipede.New(size)
+
+		// or fmt.Println(m.Print)
+		// or m.Reverse().Println()
+		m.Reverse().Reverse().Println()
 	}
 	app.Run(os.Args)
 }

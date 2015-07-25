@@ -7,31 +7,51 @@
 package millipede
 
 import (
-	"strings"
+	"fmt"
 )
 
-type Millipede struct {
-	// Size is the amount of feet pairs
-	Size uint64
+type Pede string
+type Millipede []Pede
+
+func (m Millipede) Sprint() string {
+  str := ""
+
+  for _, pede := range m {
+    tmp := fmt.Sprintln(pede)
+    str = fmt.Sprint(str, tmp)
+  }
+
+  return str
 }
 
-// String returns a string representing a millipede
-func (m *Millipede) String() string {
+func (m Millipede) Println() {
+  fmt.Print(m.Sprint())
+}
+
+// return a new Millipede Reversed
+// m.Reverse().Reverse().Reverse()
+func (m Millipede) Reverse() Millipede {
+  milli := make(Millipede, len(m))
+
+  v := 0
+  for i := len(m) - 1; i >= 0; i-- {
+    milli[i] = m[v]
+    v++
+  }
+
+  return milli
+}
+
+// Millipede returns a string representing a millipede of the specified size
+func New(size uint64) Millipede {
 	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
 
-	bodyLines := []string{"    ╚⊙ ⊙╝"}
+	milli := Millipede{"    ╚⊙ ⊙╝"}
 	var x uint64
-	for x = 0; x < m.Size; x++ {
+	for x = 0; x < size; x++ {
 		line := paddingOffsets[x%9] + "╚═(███)═╝"
-		bodyLines = append(bodyLines, line)
+		milli = append(milli, Pede(line))
 	}
 
-	return strings.Join(bodyLines, "\n")
-}
-
-// New returns a millipede
-func New(size uint64) *Millipede {
-	return &Millipede{
-		Size: size,
-	}
+	return milli
 }
