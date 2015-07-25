@@ -11,10 +11,10 @@ RUN apt-get install -y -q git
 MAINTAINER Millipede Team <business@millipede.io>
 
 # For convenience, set an env variable with the path of the code
-ENV APP_DIR /go/src/github.com/moul/millipede-go
+ENV APP_DIR /go/src/github.com/getmillipede/millipede-go
 WORKDIR $APP_DIR
 
-ADD . /go/src/github.com/moul/millipede-go
+ADD . /go/src/github.com/getmillipede/millipede-go
 
 
 # Compile the binary and statically link
