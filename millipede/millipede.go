@@ -6,21 +6,51 @@
 package millipede
 
 import (
-	"strings"
+	"fmt"
 )
 
-type Millipede string
+type Pede string
+type Millipede []Pede
+
+func (m Millipede) Sprint() string {
+  str := ""
+
+  for _, pede := range m {
+    tmp := fmt.Sprintln(pede)
+    str = fmt.Sprint(str, tmp)
+  }
+
+  return str
+}
+
+func (m Millipede) Println() {
+  fmt.Print(m.Sprint())
+}
+
+// return a new Millipede Reversed
+// m.Reverse().Reverse().Reverse()
+func (m Millipede) Reverse() Millipede {
+  milli := make(Millipede, len(m))
+
+  v := 0
+  for i := len(m) - 1; i >= 0; i-- {
+    milli[i] = m[v]
+    v++
+  }
+
+  return milli
+}
 
 // Millipede returns a string representing a millipede of the specified size
 func New(size uint64) Millipede {
-	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
+	paddingOffsets := []Pede{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
 
-	bodyLines := []string{"    ╚⊙ ⊙╝"}
+	milli := Millipede{"    ╚⊙ ⊙╝"}
 	var x uint64
 	for x = 0; x < size; x++ {
 		line := paddingOffsets[x%9] + "╚═(███)═╝"
-		bodyLines = append(bodyLines, line)
+		milli = append(milli, line)
 	}
 
-	return Millipede(strings.Join(bodyLines, "\n"))
+	return milli
 }

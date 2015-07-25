@@ -23,5 +23,6 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(millipede.New(size))
+	milli := millipede.New(size).Reverse().Reverse()
+	milli.Println()
 }
