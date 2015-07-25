@@ -30,7 +30,11 @@ func main() {
 				panic(err)
 			}
 		}
-		fmt.Println(millipede.New(size))
+
+		millipede := &millipede.Millipede{
+			Size: size,
+		}
+		fmt.Println(millipede)
 	}
 	app.Run(os.Args)
 }
