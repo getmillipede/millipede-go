@@ -34,6 +34,11 @@ func main() {
 			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii)",
 			Value: "default",
 		},
+		cli.IntFlag{
+			Name:  "width, w",
+			Usage: "millipede width",
+			Value: 3,
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -52,6 +57,7 @@ func main() {
 			Reverse:  c.Bool("reverse"),
 			Skin:     c.String("skin"),
 			Opposite: c.Bool("opposite"),
+			Width:    uint64(c.Int("width")),
 		}
 		fmt.Println(millipede)
 	}
