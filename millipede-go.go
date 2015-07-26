@@ -6,7 +6,7 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/codegangsta/cli"
+	"github.com/getmillipede/millipede-go/vendor/github.com/codegangsta/cli"
 
 	"github.com/getmillipede/millipede-go/millipede"
 	"github.com/getmillipede/millipede-go/version"

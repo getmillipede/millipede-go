@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
 )
 
 type Millipede struct {
