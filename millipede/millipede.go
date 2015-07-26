@@ -136,7 +136,7 @@ func (m *Millipede) String() string {
 	}
 
 	// build the millipede body
-	body := []string{paddingOffsets[0] + skin.Head}
+	body := []string{paddingOffsets[0] + strings.TrimRight(skin.Head, " ")}
 	var x uint64
 	for x = 0; x < m.Size; x++ {
 		var line string
