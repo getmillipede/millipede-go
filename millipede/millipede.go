@@ -13,8 +13,8 @@ import (
 	"unicode/utf8"
 
 	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
+	"github.com/getmillipede/millipede-go/vendor/github.com/kortschak/zalgo"
 	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
-	"github.com/kortschak/zalgo"
 )
 
 type Millipede struct {
