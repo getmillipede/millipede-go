@@ -11,7 +11,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
-	"github.com/mgutz/ansi"
+	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
 )
 
 type Millipede struct {
