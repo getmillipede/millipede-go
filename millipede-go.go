@@ -39,6 +39,11 @@ func main() {
 			Usage: "millipede width",
 			Value: 3,
 		},
+		cli.IntFlag{
+			Name:  "curve, c",
+			Usage: "millipede curve size",
+			Value: 4,
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -58,6 +63,7 @@ func main() {
 			Skin:     c.String("skin"),
 			Opposite: c.Bool("opposite"),
 			Width:    uint64(c.Int("width")),
+			Curve:    uint64(c.Int("curve")),
 		}
 		fmt.Println(millipede)
 	}

@@ -28,6 +28,9 @@ type Millipede struct {
 
 	// Width is the width of the millipede (depending on its age and the food it consumes)
 	Width uint64
+
+	// Curve is the size of the curve
+	Curve uint64
 }
 
 type Skin struct {
@@ -42,9 +45,20 @@ type Skin struct {
 
 // String returns a string representing a millipede
 func (m *Millipede) String() string {
-	paddingOffsets := []string{"  ", " ", "", " ", "  ", "   ", "    ", "    ", "   "}
+	// --curve support
+	paddingOffsets := []string{""}
+	if m.Curve > 0 {
+		for n := uint64(1); n < m.Curve+1; n++ {
+			paddingOffsets = append(paddingOffsets, strings.Repeat(" ", int(n)))
+		}
+		for n := m.Curve - 1; n > 0; n-- {
+			paddingOffsets = append(paddingOffsets, strings.Repeat(" ", int(n)))
+		}
+	}
+
+	// --opposite support
 	if m.Opposite {
-		paddingOffsets = []string{"  ", "   ", "    ", "    ", "   ", "  ", " ", "", " "}
+		paddingOffsets = append(paddingOffsets[m.Curve:], paddingOffsets[:m.Curve]...)
 	}
 
 	skins := map[string]Skin{
@@ -125,7 +139,12 @@ func (m *Millipede) String() string {
 	body := []string{paddingOffsets[0] + skin.Head}
 	var x uint64
 	for x = 0; x < m.Size; x++ {
-		line := paddingOffsets[x%9] + skin.Pede
+		var line string
+		if m.Curve > 0 {
+			line = paddingOffsets[x%(m.Curve*2)] + skin.Pede
+		} else {
+			line = "" + skin.Pede
+		}
 		body = append(body, line)
 	}
 
@@ -147,6 +166,7 @@ func New(size uint64) *Millipede {
 		Skin:     "default",
 		Opposite: false,
 		Width:    3,
+		Curve:    4,
 	}
 }
 
