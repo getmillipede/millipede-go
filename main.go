@@ -39,7 +39,7 @@ func main() {
 		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
-			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii)",
+			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)",
 			Value: "default",
 		},
 		cli.IntFlag{
