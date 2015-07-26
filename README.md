@@ -3,6 +3,8 @@ millipede-go :bug:
 
 [![Build Status](https://travis-ci.org/getmillipede/millipede-go.svg?branch=master)](https://travis-ci.org/getmillipede/millipede-go)
 [![GoDoc](https://godoc.org/github.com/getmillipede/millipede-go/millipede?status.svg)](https://godoc.org/github.com/getmillipede/millipede-go/millipede)
+![License](https://img.shields.io/github/license/getmillipede/millipede-go.svg)
+
 
 Golang version of [getmillipede](https://github.com/getmillipede/).
 
