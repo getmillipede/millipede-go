@@ -110,6 +110,14 @@ func (m *Millipede) String() string {
 				Pede: "|=(###)=|",
 			},
 		},
+		"inception": {
+			Head: "    👀    ",
+			Pede: "╚═(🐛🐛🐛)═╝",
+			Reverse: &Skin{
+				Head: "    👀    ",
+				Pede: "╔═(🐛🐛🐛)═╗",
+			},
+		},
 	}
 
 	// --skin support
