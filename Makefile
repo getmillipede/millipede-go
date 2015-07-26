@@ -4,14 +4,27 @@ NAME = millipede-go
 all: $(NAME)
 
 
+.PHONY: build
+build: $(NAME)
+
+
+.PHONY: test
+test:
+	go test -v .
+	go test -v ./millipede
+	go test -v ./version
+
+
 $(NAME): $(shell find . -name "*.go")
 	go build -o $@ .
 
 
+.PHONY: clean
 clean:
 	rm -f $(NAME)
 
 
+.PHONY: re
 re: clean all
 
 
