@@ -93,6 +93,14 @@ func (m *Millipede) String() string {
 				Pede: "╔═(©©©)═╗",
 			},
 		},
+		"love": {
+			Head: "  ╚⊙ ⊙╝  ",
+			Pede: "╚═(♥♥♥)═╝",
+			Reverse: &Skin{
+				Head: "  ╔⊙ ⊙╗  ",
+				Pede: "╔═(♥♥♥)═╗",
+			},
+		},
 		"musician": {
 			Head: "  ╚⊙ ⊙╝  ",
 			Pede: "╚═(♫♩♬)═╝",
@@ -206,8 +214,10 @@ func (m *Millipede) String() string {
 
 		if fgColor != "" || bgColor != "" {
 			paddingSize := len(line) - len(strings.TrimSpace(line))
-			body[idx] = strings.Repeat(" ", paddingSize) + ansi.Color(line[paddingSize:], fgColor+":"+bgColor)
+			line = strings.Repeat(" ", paddingSize) + ansi.Color(line[paddingSize:], fgColor+":"+bgColor)
 		}
+
+		body[idx] = line
 	}
 
 	return strings.Join(body, "\n")
