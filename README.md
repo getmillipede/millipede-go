@@ -1,6 +1,8 @@
 millipede-go
 ============
 
+[![Build Status](https://travis-ci.org/getmillipede/millipede-go.svg?branch=master)](https://travis-ci.org/getmillipede/millipede-go)
+
 Golang version of [getmillipede](https://github.com/getmillipede/).
 
 ## Usage
