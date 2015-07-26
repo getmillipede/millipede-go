@@ -35,6 +35,9 @@ type Millipede struct {
 
 	// Chameleon is the flag that indicates the millipede share its environment color
 	Chameleon bool
+
+	// Rainbow is the flag that indicates the millipede live with care bears
+	Rainbow bool
 }
 
 type Skin struct {
@@ -175,10 +178,27 @@ func (m *Millipede) String() string {
 		}
 	}
 
-	// --chameleon support
-	if m.Chameleon {
-		for idx, line := range body {
-			body[idx] = ansi.Color(line, "black")
+	for idx, line := range body {
+		colors := []string{"red", "green", "yellow", "blue", "magenta", "cyan", "white"}
+
+		fgColor := ""
+		bgColor := ""
+
+		if m.Chameleon {
+			fgColor = "black"
+		}
+
+		if m.Rainbow {
+			bgColor = colors[idx%len(colors)]
+			if m.Chameleon {
+				fgColor = bgColor
+				fgColor = "black"
+			}
+		}
+
+		if fgColor != "" || bgColor != "" {
+			paddingSize := len(line) - len(strings.TrimSpace(line))
+			body[idx] = strings.Repeat(" ", paddingSize) + ansi.Color(line[paddingSize:], fgColor+":"+bgColor)
 		}
 	}
 
@@ -195,6 +215,7 @@ func New(size uint64) *Millipede {
 		Width:     3,
 		Curve:     4,
 		Chameleon: false,
+		Rainbow:   false,
 	}
 }
 

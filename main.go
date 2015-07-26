@@ -33,6 +33,10 @@ func main() {
 			Name:  "chameleon",
 			Usage: "the millipede use its environment color",
 		},
+		cli.BoolFlag{
+			Name:  "rainbow",
+			Usage: "the millipede live with care bears",
+		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
 			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii)",
@@ -69,6 +73,7 @@ func main() {
 			Width:     uint64(c.Int("width")),
 			Curve:     uint64(c.Int("curve")),
 			Chameleon: c.Bool("chameleon"),
+			Rainbow:   c.Bool("rainbow"),
 		}
 		fmt.Println(millipede)
 	}
