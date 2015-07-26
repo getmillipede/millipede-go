@@ -29,6 +29,10 @@ func main() {
 			Name:  "opposite, o",
 			Usage: "go the opposite direction",
 		},
+		cli.BoolFlag{
+			Name:  "chameleon",
+			Usage: "the millipede use its environment color",
+		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
 			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii)",
@@ -58,12 +62,13 @@ func main() {
 		}
 
 		millipede := &millipede.Millipede{
-			Size:     size,
-			Reverse:  c.Bool("reverse"),
-			Skin:     c.String("skin"),
-			Opposite: c.Bool("opposite"),
-			Width:    uint64(c.Int("width")),
-			Curve:    uint64(c.Int("curve")),
+			Size:      size,
+			Reverse:   c.Bool("reverse"),
+			Skin:      c.String("skin"),
+			Opposite:  c.Bool("opposite"),
+			Width:     uint64(c.Int("width")),
+			Curve:     uint64(c.Int("curve")),
+			Chameleon: c.Bool("chameleon"),
 		}
 		fmt.Println(millipede)
 	}

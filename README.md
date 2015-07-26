@@ -30,6 +30,7 @@ COMMANDS:
 GLOBAL OPTIONS:
    --reverse, -r                           reverse the millipede
    --opposite, -o                          go the opposite direction
+   --chameleon                             the millipede use its environment color
    --skin, --template, -s, -t "default"    millipede skin (default, frozen, love, corporate, musician, bocal, ascii)
    --width, -w "3"                         millipede width
    --curve, -c "4"                         millipede curve size

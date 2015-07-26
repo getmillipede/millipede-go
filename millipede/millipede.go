@@ -11,6 +11,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
+	"github.com/mgutz/ansi"
 )
 
 type Millipede struct {
@@ -31,6 +32,9 @@ type Millipede struct {
 
 	// Curve is the size of the curve
 	Curve uint64
+
+	// Chameleon is the flag that indicates the millipede share its environment color
+	Chameleon bool
 }
 
 type Skin struct {
@@ -171,18 +175,26 @@ func (m *Millipede) String() string {
 		}
 	}
 
+	// --chameleon support
+	if m.Chameleon {
+		for idx, line := range body {
+			body[idx] = ansi.Color(line, "black")
+		}
+	}
+
 	return strings.Join(body, "\n")
 }
 
 // New returns a millipede
 func New(size uint64) *Millipede {
 	return &Millipede{
-		Size:     size,
-		Reverse:  false,
-		Skin:     "default",
-		Opposite: false,
-		Width:    3,
-		Curve:    4,
+		Size:      size,
+		Reverse:   false,
+		Skin:      "default",
+		Opposite:  false,
+		Width:     3,
+		Curve:     4,
+		Chameleon: false,
 	}
 }
 
