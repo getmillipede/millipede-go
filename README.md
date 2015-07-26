@@ -20,14 +20,16 @@ AUTHOR(S):
    Millipede crew <https://github.com/getmillipede/millipede-go>
 
 COMMANDS:
-   help, h	Shows a list of commands or help for one command
+   help, h     Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --reverse, -r                           reverse the millipede
    --opposite, -o                          go the opposite direction
-   --skin, --template, -s, -t "default"    millipede skin (default)
-   --help, -h		                       show help
-   --version, -v	                       print the version
+   --skin, --template, -s, -t "default"    millipede skin (default, frozen, love, corporate, musician, bocal, ascii)
+   --width, -w "3"                         millipede width
+   --curve, -c "4"                         millipede curve size
+   --help, -h                              show help
+   --version, -v                           print the version
 ```
 
 ## Examples
