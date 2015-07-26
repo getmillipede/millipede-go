@@ -7,11 +7,14 @@
 package millipede
 
 import (
+	"bytes"
+	"fmt"
 	"strings"
 	"unicode/utf8"
 
 	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
 	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
+	"github.com/kortschak/zalgo"
 )
 
 type Millipede struct {
@@ -38,6 +41,9 @@ type Millipede struct {
 
 	// Rainbow is the flag that indicates the millipede live with care bears
 	Rainbow bool
+
+	// Zalgo is the flag that invoke the hive-mind representing chaos
+	Zalgo bool
 }
 
 type Skin struct {
@@ -194,16 +200,19 @@ func (m *Millipede) String() string {
 		}
 	}
 
+	// --chameleon and --rainbow support
 	for idx, line := range body {
 		colors := []string{"red", "green", "yellow", "blue", "magenta", "cyan", "white"}
 
 		fgColor := ""
 		bgColor := ""
 
+		// --chameleon support
 		if m.Chameleon {
 			fgColor = "black"
 		}
 
+		// --rainbow
 		if m.Rainbow {
 			bgColor = colors[idx%len(colors)]
 			if m.Chameleon {
@@ -220,7 +229,35 @@ func (m *Millipede) String() string {
 		body[idx] = line
 	}
 
-	return strings.Join(body, "\n")
+	output := strings.Join(body, "\n")
+
+	// --zalgo support
+	if m.Zalgo {
+		buf := new(bytes.Buffer)
+
+		z := zalgo.NewCorrupter(buf)
+		z.Zalgo = func(n int, r rune, z *zalgo.Corrupter) bool {
+			if string(r) == " " || r == 10 {
+				z.Up = 0
+				z.Middle = 0
+				z.Down = 0
+			} else {
+				if z.Up == 0 {
+					z.Up = complex(0, 0.2)
+					z.Middle = complex(0, 0.2)
+					z.Down = complex(0.001, 0.3)
+				}
+				z.Up += 0.1
+				z.Middle += complex(0.1, 0.2)
+				z.Down += 0.1
+			}
+			return false
+		}
+		fmt.Fprintln(z, output)
+		output = buf.String()
+	}
+
+	return output
 }
 
 // New returns a millipede
@@ -234,6 +271,7 @@ func New(size uint64) *Millipede {
 		Curve:     4,
 		Chameleon: false,
 		Rainbow:   false,
+		Zalgo:     false,
 	}
 }
 

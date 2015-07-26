@@ -37,6 +37,10 @@ func main() {
 			Name:  "rainbow",
 			Usage: "the millipede live with care bears",
 		},
+		cli.BoolFlag{
+			Name:  "zalgo",
+			Usage: "invoke the hive-mind representing chaos",
+		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
 			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)",
@@ -74,6 +78,7 @@ func main() {
 			Curve:     uint64(c.Int("curve")),
 			Chameleon: c.Bool("chameleon"),
 			Rainbow:   c.Bool("rainbow"),
+			Zalgo:     c.Bool("zalgo"),
 		}
 		fmt.Println(millipede)
 	}
