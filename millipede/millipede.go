@@ -21,30 +21,24 @@ import (
 type Millipede struct {
 	// Size is the amount of feet pairs
 	Size uint64
-
 	// Reverse is the flag that indicates the direction (up/down)
 	Reverse bool
-
 	// Skin is the current millipede skin (template)
 	Skin string
-
 	// Opposite is the flag that indicates the direction (left/right)
 	Opposite bool
-
 	// Width is the width of the millipede (depending on its age and the food it consumes)
 	Width uint64
-
 	// Curve is the size of the curve
 	Curve uint64
-
 	// Chameleon is the flag that indicates the millipede share its environment color
 	Chameleon bool
-
 	// Rainbow is the flag that indicates the millipede live with care bears
 	Rainbow bool
-
 	// Zalgo is the flag that invoke the hive-mind representing chaos
 	Zalgo bool
+	// Step is the amount of steps done by the millipede (useful for animations)
+	Steps uint64
 }
 
 type Skin struct {
@@ -176,12 +170,12 @@ func (m *Millipede) String() string {
 	}
 
 	// build the millipede body
-	body := []string{paddingOffsets[0] + strings.TrimRight(skin.Head, " ")}
+	body := []string{paddingOffsets[m.Steps%(m.Curve*2)] + strings.TrimRight(skin.Head, " ")}
 	var x uint64
 	for x = 0; x < m.Size; x++ {
 		var line string
 		if m.Curve > 0 {
-			line = paddingOffsets[x%(m.Curve*2)] + skin.Pede
+			line = paddingOffsets[(m.Steps+x)%(m.Curve*2)] + skin.Pede
 		} else {
 			line = "" + skin.Pede
 		}
@@ -267,6 +261,7 @@ func New(size uint64) *Millipede {
 		Chameleon: false,
 		Rainbow:   false,
 		Zalgo:     false,
+		Steps:     0,
 	}
 }
 

@@ -56,6 +56,11 @@ func main() {
 			Usage: "millipede curve size",
 			Value: 4,
 		},
+		cli.IntFlag{
+			Name:  "steps",
+			Usage: "amount of steps done by the millipede",
+			Value: 0,
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -79,6 +84,7 @@ func main() {
 			Chameleon: c.Bool("chameleon"),
 			Rainbow:   c.Bool("rainbow"),
 			Zalgo:     c.Bool("zalgo"),
+			Steps:     uint64(c.Int("steps")),
 		}
 		fmt.Println(millipede)
 	}
