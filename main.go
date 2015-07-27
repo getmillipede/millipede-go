@@ -41,6 +41,10 @@ func main() {
 			Name:  "zalgo",
 			Usage: "invoke the hive-mind representing chaos",
 		},
+		cli.BoolFlag{
+			Name:  "animate",
+			Usage: "he is alive !",
+		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
 			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)",
@@ -86,7 +90,11 @@ func main() {
 			Zalgo:     c.Bool("zalgo"),
 			Steps:     uint64(c.Int("steps")),
 		}
-		fmt.Println(millipede)
+		if c.Bool("animate") {
+			millipede.Animate()
+		} else {
+			fmt.Println(millipede)
+		}
 	}
 	app.Run(os.Args)
 }
