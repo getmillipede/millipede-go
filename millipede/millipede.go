@@ -9,6 +9,7 @@ package millipede
 import (
 	"bytes"
 	"fmt"
+	"math"
 	"strings"
 	"unicode/utf8"
 
@@ -51,22 +52,16 @@ type Skin struct {
 	Head string
 	// Pede are what make this arthropod so special
 	Pede string
-
 	// Reverse is the reverse skin of the millipede
 	Reverse *Skin
 }
 
 // String returns a string representing a millipede
 func (m *Millipede) String() string {
-	// --curve support
 	paddingOffsets := []string{""}
-	if m.Curve > 0 {
-		for n := uint64(1); n < m.Curve+1; n++ {
-			paddingOffsets = append(paddingOffsets, strings.Repeat(" ", int(n)))
-		}
-		for n := m.Curve - 1; n > 0; n-- {
-			paddingOffsets = append(paddingOffsets, strings.Repeat(" ", int(n)))
-		}
+	for n := uint64(1); n < m.Curve*2; n++ {
+		size := int(math.Min(float64(n%(m.Curve*2)), float64(m.Curve*2-n%(m.Curve*2))))
+		paddingOffsets = append(paddingOffsets, strings.Repeat(" ", size))
 	}
 
 	// --opposite support
