@@ -5,8 +5,9 @@ millipede-go :bug:
 [![GoDoc](https://godoc.org/github.com/getmillipede/millipede-go/millipede?status.svg)](https://godoc.org/github.com/getmillipede/millipede-go/millipede)
 ![License](https://img.shields.io/github/license/getmillipede/millipede-go.svg)
 
+![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede.gif)
 
-Golang version of [getmillipede](https://github.com/getmillipede/).
+Golang version of [getmillipede](https://github.com/getmillipede/) with some exclusive features.
 
 ## Usage
 
@@ -267,29 +268,36 @@ $ millipede-go --skin=bocal --curve=0
 
 ```command
 $ millipede-go --zalgo
-  ╚⊙̲͋ ⊙̴╝͇͠
-╚═(̀█̴█̴█̨)̛̻═͜╝͍͡
- ╚̘═̶(ͪ́█̛ͯ█҉█͚́)̷̰═͙͜╝̴̦
-  ╚̨═(͉͋█͘█͜█̲͘)̷═̢╝̴
-   ╚═̯(̴█͢█҉█͟)͢═̫͝╝͏
-    ╚͝═(̨█͜█̶█̜͠)̯̉́═̢╝̧͎͛
-   ╚̩ͩ═̵(ͦ█̴█̡█̤͟)̧̟═̸͕̓╝̕
-  ╚͟═̨(͟█̞͠█̕█́͢)̪ͪ͟═̡͎╝̸
- ╚═͞(█̴̚█̨̾█̓͜)͜═̴╝̡
-╚̲═̨(█͠█҉̲█̴̮̓)̸̭═̕╝̴͎
- ╚͏═҉̬(̀█̛̬ͥ█̶͕█̷)͝═͈͠╝́
-  ╚̵═(█̚͘█́█̴͚)̷̱═̶̺̎╝̛͉
-   ╚═́(̙̀█̨█̢█ͧ͘)̵═̸╝҉
-    ╚̛͉̔═̶̻(█̡͔█̓͘█̢͐)̡̜═͘╝̀
-   ╚̷═̫(̞͗█̢͇█̴͉█̶̥)̷═̤̑͡╝̝̏͡
-  ╚═͕(ͭ█̛█̸█̢͇)͞═͎͠╝͞
- ╚̧═̀(҉̙█̍͏█̟͘█͏)̵̫═̡̱╝̷
-╚═̸(̉͟█̸█͝█̢)͟═̴͎╝̼̑͞
- ╚═(̂█̵͕█͏█̛)̧═̶̿╝̖̉͞
-  ╚̡═̴ͦ(̦█̨█̶̥█҉)̛̮═͡╝̴
-   ╚═(̨█͢█̨█̸)̡═̕╝̛̋
+  ╚⊙̲͋ ⊙̴╝͇͠
+╚═(̀█̴█̴█̨)̛̻═͜╝͍͡
+ ╚̘═̶(ͪ́█̛ͯ█҉█͚́)̷̰═͙͜╝̴̦
+  ╚̨═(͉͋█͘█͜█̲͘)̷═̢╝̴
+   ╚═̯(̴█͢█҉█͟)͢═̫͝╝͏
+    ╚͝═(̨█͜█̶█̜͠)̯̉́═̢╝̧͎͛
+   ╚̩ͩ═̵(ͦ█̴█̡█̤͟)̧̟═̸͕̓╝̕
+  ╚͟═̨(͟█̞͠█̕█́͢)̪ͪ͟═̡͎╝̸
+ ╚═͞(█̴̚█̨̾█̓͜)͜═̴╝̡
+╚̲═̨(█͠█҉̲█̴̮̓)̸̭═̕╝̴͎
+ ╚͏═҉̬(̀█̛̬ͥ█̶͕█̷)͝═͈͠╝́
+  ╚̵═(█̚͘█́█̴͚)̷̱═̶̺̎╝̛͉
+   ╚═́(̙̀█̨█̢█ͧ͘)̵═̸╝҉
+    ╚̛͉̔═̶̻(█̡͔█̓͘█̢͐)̡̜═͘╝̀
+   ╚̷═̫(̞͗█̢͇█̴͉█̶̥)̷═̤̑͡╝̝̏͡
+  ╚═͕(ͭ█̛█̸█̢͇)͞═͎͠╝͞
+ ╚̧═̀(҉̙█̍͏█̟͘█͏)̵̫═̡̱╝̷
+╚═̸(̉͟█̸█͝█̢)͟═̴͎╝̼̑͞
+ ╚═(̂█̵͕█͏█̛)̧═̶̿╝̖̉͞
+  ╚̡═̴ͦ(̦█̨█̶̥█҉)̛̮═͡╝̴
+   ╚═(̨█͢█̨█̸)̡═̕╝̛̋
 
 ```
+
+---
+
+```command
+$ millipede-go --animate
+```
+![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede.gif)
 
 
 
