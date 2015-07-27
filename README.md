@@ -299,6 +299,12 @@ $ millipede-go --animate
 ```
 ![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede.gif)
 
+---
+
+```command
+$ millipede-go --animate --rainbow --curve=8 --width=5 --skin=humancentipede --chameleon 21
+```
+![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede-full.gif)
 
 
 ## Install
