@@ -306,6 +306,12 @@ $ millipede-go --animate --rainbow --curve=8 --width=5 --skin=humancentipede --c
 ```
 ![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede-full.gif)
 
+---
+
+```command
+$ millipede-go --animate --zalgo
+```
+![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede-zalgo.gif)
 
 ## Install
 
