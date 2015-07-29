@@ -18,10 +18,11 @@ IREF_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_iref)
 TEST_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_test)
 BENCH_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_bench)
 TRAVIS_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_travis)
+COVER_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_cover)
 FMT_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_fmt)
 
 
-.PHONY: $(CLEAN_LIST) $(TEST_LIST) $(FMT_LIST) $(INSTALL_LIST) $(BUILD_LIST) $(IREF_LIST) $(BENCH_LIST) $(TRAVIS_LIST)
+.PHONY: $(CLEAN_LIST) $(TEST_LIST) $(FMT_LIST) $(INSTALL_LIST) $(BUILD_LIST) $(IREF_LIST) $(BENCH_LIST) $(TRAVIS_LIST) $(COVER_LIST)
 
 
 all: build
@@ -34,6 +35,10 @@ install: $(INSTALL_LIST)
 test: $(TEST_LIST)
 bench: $(BENCH_LIST)
 travis: $(TRAVIS_LIST)
+cover: $(COVER_LIST)
+	echo "mode: set" | cat - acc.out > acc.out.tmp && mv acc.out.tmp acc.out
+	goveralls -service=travis-ci -v -coverprofile=acc.out
+	rm -f acc.out
 iref: $(IREF_LIST)
 fmt: $(FMT_LIST)
 
@@ -52,6 +57,12 @@ $(BENCH_LIST): %_bench:
 	$(GOTEST) -bench . ./$*
 $(TRAVIS_LIST): %_travis:
 	$(GOTEST) -v ./$*
+$(COVER_LIST): %_cover:
+	$(GOTEST) -coverprofile=profile.out ./$*
+	if [ -f profile.out ]; then \
+		cat profile.out | grep -v "mode: set" | grep -v "mocks.go" >> acc.out || true; \
+		rm profile.out; \
+	fi
 $(FMT_LIST): %_fmt:
 	$(GOFMT) ./$*
 

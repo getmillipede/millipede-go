@@ -4,3 +4,6 @@
 
 dist/
 millipede-go
+
+acc.out
+profile.out
