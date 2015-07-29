@@ -1,6 +1,6 @@
 NAME = millipede-go
-SRC = .
-PACKAGES = millipede version
+SRC = cmd/millipede-go
+PACKAGES = .
 
 
 GOCMD ?=        go
@@ -18,7 +18,7 @@ IREF_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_iref)
 TEST_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_test)
 BENCH_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_bench)
 TRAVIS_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_travis)
-COVER_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_cover)
+COVER_LIST = $(foreach int, $(PACKAGES), $(int)_cover)
 FMT_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_fmt)
 
 
@@ -35,10 +35,10 @@ install: $(INSTALL_LIST)
 test: $(TEST_LIST)
 bench: $(BENCH_LIST)
 travis: $(TRAVIS_LIST)
-cover: $(COVER_LIST)
-	echo "mode: set" | cat - acc.out > acc.out.tmp && mv acc.out.tmp acc.out
-	goveralls -service=travis-ci -v -coverprofile=acc.out
-	rm -f acc.out
+cover:
+	rm -f profile.out
+	$(MAKE) $(COVER_LIST)
+	echo "mode: set" | cat - profile.out > profile.out.tmp && mv profile.out.tmp profile.out
 iref: $(IREF_LIST)
 fmt: $(FMT_LIST)
 
@@ -58,11 +58,8 @@ $(BENCH_LIST): %_bench:
 $(TRAVIS_LIST): %_travis:
 	$(GOTEST) -v ./$*
 $(COVER_LIST): %_cover:
-	$(GOTEST) -coverprofile=profile.out ./$*
-	if [ -f profile.out ]; then \
-		cat profile.out | grep -v "mode: set" | grep -v "mocks.go" >> acc.out || true; \
-		rm profile.out; \
-	fi
+	$(GOTEST) -coverprofile=file-profile.out ./$*
+	if [ -f file-profile.out ]; then cat file-profile.out | grep -v "mode: set" >> profile.out || true; rm -f file-profile.out; fi
 $(FMT_LIST): %_fmt:
 	$(GOFMT) ./$*
 

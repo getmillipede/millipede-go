@@ -14,3 +14,4 @@ script:
 - make build
 - make travis
 - make cover
+- goveralls -service=travis-ci -v -coverprofile=profile.out

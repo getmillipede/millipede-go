@@ -325,7 +325,7 @@ Download a statically compiled binary
 Download and build using Golang
 
 ```command
-$ go get github.com/getmillipede/millipede-go
+$ go get github.com/getmillipede/millipede-go/...
 ```
 
 ## License
