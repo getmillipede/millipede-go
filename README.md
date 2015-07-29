@@ -21,7 +21,7 @@ USAGE:
    millipede-go [global options] command [command options] [arguments...]
 
 VERSION:
-   1.2.0-dev (HEAD)
+   1.2.0 (HEAD)
 
 AUTHOR(S):
    Millipede crew <https://github.com/getmillipede/millipede-go>
