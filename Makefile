@@ -18,12 +18,11 @@ IREF_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_iref)
 TEST_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_test)
 BENCH_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_bench)
 TRAVIS_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_travis)
-CIRCLE_LIST = $(foreach int, $(PACKAGES), $(int)_circle)
 COVER_LIST = $(foreach int, $(PACKAGES), $(int)_cover)
 FMT_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_fmt)
 
 
-.PHONY: $(CLEAN_LIST) $(TEST_LIST) $(FMT_LIST) $(INSTALL_LIST) $(BUILD_LIST) $(IREF_LIST) $(BENCH_LIST) $(TRAVIS_LIST) $(COVER_LIST) $(CIRCLE_LIST)
+.PHONY: $(CLEAN_LIST) $(TEST_LIST) $(FMT_LIST) $(INSTALL_LIST) $(BUILD_LIST) $(IREF_LIST) $(BENCH_LIST) $(TRAVIS_LIST) $(COVER_LIST)
 
 
 all: build
@@ -36,7 +35,6 @@ install: $(INSTALL_LIST)
 test: $(TEST_LIST)
 bench: $(BENCH_LIST)
 travis: $(TRAVIS_LIST)
-circle: $(CIRCLE_LIST)
 cover:
 	rm -f profile.out
 	$(MAKE) $(COVER_LIST)
@@ -59,8 +57,6 @@ $(BENCH_LIST): %_bench:
 	$(GOTEST) -bench . ./$*
 $(TRAVIS_LIST): %_travis:
 	$(GOTEST) -v ./$*
-$(CIRCLE_LIST): %_circle:
-	$(GOTEST) -v ./$* | go-junit-report > report.xml
 $(COVER_LIST): %_cover:
 	$(GOTEST) -coverprofile=file-profile.out ./$*
 	if [ -f file-profile.out ]; then cat file-profile.out | grep -v "mode: set" >> profile.out || true; rm -f file-profile.out; fi
