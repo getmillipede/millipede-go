@@ -34,13 +34,44 @@ func ExampleNew() {
 
 func ExampleMillipede() {
 	millipede := &Millipede{
-		Size:     20,
-		Reverse:  false,
-		Skin:     "default",
-		Opposite: false,
-		Width:    3,
-		Curve:    4,
+		Size:      20,
+		Reverse:   false,
+		Skin:      "default",
+		Opposite:  false,
+		Width:     3,
+		Curve:     4,
+		Chameleon: false,
+		Rainbow:   false,
+		Zalgo:     false,
+		Steps:     0,
 	}
+	fmt.Printf("%s\n", millipede)
+	// Output:
+	//   ╚⊙ ⊙╝
+	// ╚═(███)═╝
+	//  ╚═(███)═╝
+	//   ╚═(███)═╝
+	//    ╚═(███)═╝
+	//     ╚═(███)═╝
+	//    ╚═(███)═╝
+	//   ╚═(███)═╝
+	//  ╚═(███)═╝
+	// ╚═(███)═╝
+	//  ╚═(███)═╝
+	//   ╚═(███)═╝
+	//    ╚═(███)═╝
+	//     ╚═(███)═╝
+	//    ╚═(███)═╝
+	//   ╚═(███)═╝
+	//  ╚═(███)═╝
+	// ╚═(███)═╝
+	//  ╚═(███)═╝
+	//   ╚═(███)═╝
+	//    ╚═(███)═╝
+}
+
+func ExampleMillipede_String() {
+	millipede := New(20)
 	fmt.Println(millipede)
 	// Output:
 	//   ╚⊙ ⊙╝
@@ -66,15 +97,10 @@ func ExampleMillipede() {
 	//    ╚═(███)═╝
 }
 
-func ExampleMillipede_reverse() {
-	millipede := &Millipede{
-		Size:     20,
-		Reverse:  true,
-		Skin:     "default",
-		Opposite: false,
-		Width:    3,
-		Curve:    4,
-	}
+func ExampleMillipede_String_reverse() {
+	millipede := New(20)
+	millipede.Reverse = true
+
 	fmt.Println(millipede)
 	// Output:
 	//    ╔═(███)═╗
@@ -100,15 +126,10 @@ func ExampleMillipede_reverse() {
 	//   ╔⊙ ⊙╗
 }
 
-func ExampleMillipede_opposite() {
-	millipede := &Millipede{
-		Size:     20,
-		Reverse:  false,
-		Skin:     "default",
-		Opposite: true,
-		Width:    3,
-		Curve:    4,
-	}
+func ExampleMillipede_String_opposite() {
+	millipede := New(20)
+	millipede.Opposite = true
+
 	fmt.Println(millipede)
 	// Output:
 	//       ╚⊙ ⊙╝
@@ -134,15 +155,10 @@ func ExampleMillipede_opposite() {
 	//  ╚═(███)═╝
 }
 
-func ExampleMillipede_skin() {
-	millipede := &Millipede{
-		Size:     20,
-		Reverse:  false,
-		Skin:     "bocal",
-		Opposite: false,
-		Width:    3,
-		Curve:    4,
-	}
+func ExampleMillipede_String_skin() {
+	millipede := New(20)
+	millipede.Skin = "bocal"
+
 	fmt.Println(millipede)
 	// Output:
 	//   ╚⊙ ⊙╝
@@ -168,15 +184,10 @@ func ExampleMillipede_skin() {
 	//    ╚═(🐟🐟🐟)═╝
 }
 
-func ExampleMillipede_width() {
-	millipede := &Millipede{
-		Size:     20,
-		Reverse:  false,
-		Skin:     "default",
-		Opposite: false,
-		Width:    6,
-		Curve:    4,
-	}
+func ExampleMillipede_String_width() {
+	millipede := New(20)
+	millipede.Width = 6
+
 	fmt.Println(millipede)
 	// Output:
 	//   ╚⊙    ⊙╝
@@ -202,15 +213,10 @@ func ExampleMillipede_width() {
 	//    ╚═(██████)═╝
 }
 
-func ExampleMillipede_curve() {
-	millipede := &Millipede{
-		Size:     20,
-		Reverse:  false,
-		Skin:     "default",
-		Opposite: false,
-		Width:    3,
-		Curve:    6,
-	}
+func ExampleMillipede_String_curve() {
+	millipede := New(20)
+	millipede.Curve = 6
+
 	fmt.Println(millipede)
 	// Output:
 	//   ╚⊙ ⊙╝
@@ -236,29 +242,29 @@ func ExampleMillipede_curve() {
 	//      ╚═(███)═╝
 }
 
-func TestMillipede_zalgo(t *testing.T) {
+func TestMillipede_String_zalgo(t *testing.T) {
 	// FIXME: find a better test
 	millipede := New(20)
 	millipede.Zalgo = true
 	millipede.String()
 }
 
-func TestMillipede_small_width(t *testing.T) {
+func TestMillipede_String_smallwidth(t *testing.T) {
 	millipede := New(20)
 	millipede.Width = 2
 	// FIXME: check if it exits
 	//millipede.String()
 }
 
-func ExampleNew_complex() {
-	millipede := &Millipede{
-		Size:     42,
-		Reverse:  true,
-		Skin:     "bocal",
-		Opposite: true,
-		Width:    6,
-		Curve:    10,
-	}
+func ExampleMillipede_String_complex() {
+	millipede := New(20)
+	millipede.Size = 42
+	millipede.Reverse = true
+	millipede.Skin = "bocal"
+	millipede.Opposite = true
+	millipede.Width = 6
+	millipede.Curve = 10
+
 	fmt.Println(millipede)
 	// Output:
 	//          ╔═(🐟🐟🐟🐟🐟🐟)═╗
@@ -319,9 +325,9 @@ func BenchmarkNew(b *testing.B) {
 	}
 }
 
-func BenchmarkRendering(b *testing.B) {
+func BenchmarkMillipede_String(b *testing.B) {
 	millipede := New(20)
 	for i := 0; i < b.N; i++ {
-		fmt.Sprintf("%s", millipede)
+		millipede.String()
 	}
 }
