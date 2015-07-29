@@ -1,6 +1,6 @@
 dependencies:
   post:
-    - go get -u github.com/jstemmer/go-junit-report
+    - go get -t -v github.com/jstemmer/go-junit-report
 
 
 test:
