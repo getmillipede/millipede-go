@@ -236,6 +236,20 @@ func ExampleMillipede_curve() {
 	//      ╚═(███)═╝
 }
 
+func TestMillipede_zalgo(t *testing.T) {
+	// FIXME: find a better test
+	millipede := New(20)
+	millipede.Zalgo = true
+	millipede.String()
+}
+
+func TestMillipede_small_width(t *testing.T) {
+	millipede := New(20)
+	millipede.Width = 2
+	// FIXME: check if it exits
+	//millipede.String()
+}
+
 func ExampleNew_complex() {
 	millipede := &Millipede{
 		Size:     42,
@@ -290,6 +304,13 @@ func ExampleNew_complex() {
 	//          ╔═(🐟🐟🐟🐟🐟🐟)═╗
 	//           ╔═(🐟🐟🐟🐟🐟🐟)═╗
 	//             ╔⊙    ⊙╗
+}
+
+func ExampleStringToRuneSlice() {
+	input := "╔═(🐟🐟🐟🐟🐟🐟)═╗"
+	output := StringToRuneSlice(input)
+	fmt.Println(output)
+	// Output: [9556 9552 40 128031 128031 128031 128031 128031 128031 41 9552 9559]
 }
 
 func BenchmarkNew(b *testing.B) {
