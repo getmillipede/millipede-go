@@ -1,6 +1,11 @@
+dependencies:
+  post:
+    - go get -u github.com/jstemmer/go-junit-report
+
+
 test:
   override:
-    - make test
+    - make circle
     - make build
 
 general:
