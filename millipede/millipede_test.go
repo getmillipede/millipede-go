@@ -32,7 +32,7 @@ func ExampleNew() {
 	//    ╚═(███)═╝
 }
 
-func ExampleConstructor() {
+func ExampleMillipede() {
 	millipede := &Millipede{
 		Size:     20,
 		Reverse:  false,
@@ -66,7 +66,7 @@ func ExampleConstructor() {
 	//    ╚═(███)═╝
 }
 
-func ExampleReverse() {
+func ExampleMillipede_reverse() {
 	millipede := &Millipede{
 		Size:     20,
 		Reverse:  true,
@@ -100,7 +100,7 @@ func ExampleReverse() {
 	//   ╔⊙ ⊙╗
 }
 
-func ExampleOpposite() {
+func ExampleMillipede_opposite() {
 	millipede := &Millipede{
 		Size:     20,
 		Reverse:  false,
@@ -134,7 +134,7 @@ func ExampleOpposite() {
 	//  ╚═(███)═╝
 }
 
-func ExampleSkin() {
+func ExampleMillipede_skin() {
 	millipede := &Millipede{
 		Size:     20,
 		Reverse:  false,
@@ -168,7 +168,7 @@ func ExampleSkin() {
 	//    ╚═(🐟🐟🐟)═╝
 }
 
-func ExampleWidth() {
+func ExampleMillipede_width() {
 	millipede := &Millipede{
 		Size:     20,
 		Reverse:  false,
@@ -202,7 +202,7 @@ func ExampleWidth() {
 	//    ╚═(██████)═╝
 }
 
-func ExampleCurve() {
+func ExampleMillipede_curve() {
 	millipede := &Millipede{
 		Size:     20,
 		Reverse:  false,
@@ -236,7 +236,7 @@ func ExampleCurve() {
 	//      ╚═(███)═╝
 }
 
-func ExampleComplex() {
+func ExampleNew_complex() {
 	millipede := &Millipede{
 		Size:     42,
 		Reverse:  true,
@@ -299,7 +299,8 @@ func BenchmarkNew(b *testing.B) {
 }
 
 func BenchmarkRendering(b *testing.B) {
+	millipede := New(20)
 	for i := 0; i < b.N; i++ {
-		fmt.Sprintf("%s", New(20))
+		fmt.Sprintf("%s", millipede)
 	}
 }
