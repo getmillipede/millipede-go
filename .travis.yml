@@ -13,3 +13,4 @@ before_install:
 script:
 - make build
 - make travis
+- make cover
