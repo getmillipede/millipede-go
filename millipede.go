@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"math"
 	"strings"
-	"time"
 	"unicode/utf8"
 
 	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
@@ -41,8 +40,8 @@ type Millipede struct {
 	// Step is the amount of steps done by the millipede (useful for animations)
 	Steps uint64
 
-	// private fields
-	padRight bool
+	// PadRight is the flag that indicates the need to add spacing on the right of the output
+	PadRight bool
 }
 
 type Skin struct {
@@ -52,17 +51,6 @@ type Skin struct {
 	Pede string
 	// Reverse is the reverse skin of the millipede
 	Reverse *Skin
-}
-
-func (m *Millipede) Animate() {
-	m.padRight = true
-	fmt.Println("\033[2J")
-	for steps := 0; ; steps++ {
-		fmt.Println("\033[0;0H")
-		fmt.Println(m)
-		m.Steps += 1
-		time.Sleep(100 * time.Millisecond)
-	}
 }
 
 // String returns a string representing a millipede
@@ -230,7 +218,7 @@ func (m *Millipede) String() string {
 			line = strings.Repeat(" ", paddingSize) + ansi.Color(line[paddingSize:], fgColor+":"+bgColor)
 		}
 
-		if m.padRight {
+		if m.PadRight {
 			line = line + strings.Repeat(" ", int(m.Curve))
 		}
 

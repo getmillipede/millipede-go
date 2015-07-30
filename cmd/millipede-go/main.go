@@ -5,6 +5,7 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"time"
 
 	"github.com/getmillipede/millipede-go/vendor/github.com/codegangsta/cli"
 
@@ -91,7 +92,15 @@ func main() {
 			Steps:     uint64(c.Int("steps")),
 		}
 		if c.Bool("animate") {
-			millipede.Animate()
+			millipede.PadRight = true
+			fmt.Println("\033[2J")
+			for steps := 0; ; steps++ {
+				frame := fmt.Sprint(millipede)
+				fmt.Println("\033[0;0H")
+				fmt.Println(frame)
+				millipede.Steps++
+				time.Sleep(100 * time.Millisecond)
+			}
 		} else {
 			fmt.Println(millipede)
 		}
