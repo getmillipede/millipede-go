@@ -18,6 +18,7 @@ import (
 	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
 )
 
+// Millipede defines a millipede configuration
 type Millipede struct {
 	// Size is the amount of feet pairs
 	Size uint64
@@ -44,6 +45,7 @@ type Millipede struct {
 	PadRight bool
 }
 
+// Skin defines the different parts of a millipede body
 type Skin struct {
 	// Head is used by the millipede to think about its life
 	Head string
