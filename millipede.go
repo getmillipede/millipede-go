@@ -56,14 +56,15 @@ type Skin struct {
 // String returns a string representing a millipede
 func (m *Millipede) String() string {
 	paddingOffsets := []string{""}
-	for n := uint64(1); n < m.Curve*2; n++ {
-		size := int(math.Min(float64(n%(m.Curve*2)), float64(m.Curve*2-n%(m.Curve*2))))
-		paddingOffsets = append(paddingOffsets, strings.Repeat(" ", size))
-	}
-
-	// --opposite support
-	if m.Opposite {
-		paddingOffsets = append(paddingOffsets[m.Curve:], paddingOffsets[:m.Curve]...)
+	if m.Curve > 0 {
+		for n := uint64(1); n < m.Curve*2; n++ {
+			size := int(math.Min(float64(n%(m.Curve*2)), float64(m.Curve*2-n%(m.Curve*2))))
+			paddingOffsets = append(paddingOffsets, strings.Repeat(" ", size))
+		}
+		// --opposite support
+		if m.Opposite {
+			paddingOffsets = append(paddingOffsets[m.Curve:], paddingOffsets[:m.Curve]...)
+		}
 	}
 
 	skins := map[string]Skin{
@@ -173,7 +174,12 @@ func (m *Millipede) String() string {
 	}
 
 	// build the millipede body
-	body := []string{paddingOffsets[m.Steps%(m.Curve*2)] + strings.TrimRight(skin.Head, " ")}
+	var body []string
+	if m.Curve > 0 {
+		body = []string{paddingOffsets[m.Steps%(m.Curve*2)] + strings.TrimRight(skin.Head, " ")}
+	} else {
+		body = []string{strings.TrimRight(skin.Head, " ")}
+	}
 	var x uint64
 	for x = 0; x < m.Size; x++ {
 		var line string

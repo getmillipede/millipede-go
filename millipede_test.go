@@ -242,6 +242,35 @@ func ExampleMillipede_String_curve() {
 	//      ╚═(███)═╝
 }
 
+func ExampleMillipede_String_curve_zero() {
+	millipede := New(20)
+	millipede.Curve = 0
+
+	fmt.Println(millipede)
+	// Output:
+	//   ╚⊙ ⊙╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+	// ╚═(███)═╝
+}
+
 func TestMillipede_String_zalgo(t *testing.T) {
 	// FIXME: find a better test
 	millipede := New(20)
