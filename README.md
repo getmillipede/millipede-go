@@ -11,7 +11,13 @@ millipede-go :bug:
 
 Golang version of [getmillipede](https://github.com/getmillipede/) with some exclusive features.
 
-## Usage
+## Components
+
+- **./**: the millipede Golang API
+- [./cmd/millipede-go](https://github.com/getmillipede/millipede-go/tree/master/cmd/millipede-go): the millipede CLI
+- [./cmd/millipede-web](https://github.com/getmillipede/millipede-go/tree/master/cmd/millipede-go): the millipede web server
+
+## CLI Usage
 
 ```command
 $ millipede-go -h
@@ -43,7 +49,7 @@ GLOBAL OPTIONS:
    --version, -v                           print the version
 ```
 
-## Examples
+### Examples
 
 ```command
 $ millipede-go
@@ -314,6 +320,62 @@ $ millipede-go --animate --rainbow --curve=8 --width=5 --skin=humancentipede --c
 $ millipede-go --animate --zalgo
 ```
 ![](https://raw.githubusercontent.com/getmillipede/millipede-go/master/assets/millipede-zalgo.gif)
+
+## Web usage
+
+```command
+$ millipede-web
+2015/07/30 18:57:57 About to listen on 4242. Go to http://127.0.0.1:4242/
+```
+
+```command
+$ curl localhost:4242
+  ╚⊙ ⊙╝
+╚═(███)═╝
+ ╚═(███)═╝
+  ╚═(███)═╝
+   ╚═(███)═╝
+    ╚═(███)═╝
+   ╚═(███)═╝
+  ╚═(███)═╝
+ ╚═(███)═╝
+╚═(███)═╝
+ ╚═(███)═╝
+  ╚═(███)═╝
+   ╚═(███)═╝
+    ╚═(███)═╝
+   ╚═(███)═╝
+  ╚═(███)═╝
+ ╚═(███)═╝
+╚═(███)═╝
+ ╚═(███)═╝
+  ╚═(███)═╝
+   ╚═(███)═╝
+$ curl localhost:4242/\?skin=bocal
+╚⊙ ⊙╝
+╚═(🐟🐟🐟)═╝
+ ╚═(🐟🐟🐟)═╝
+  ╚═(🐟🐟🐟)═╝
+   ╚═(🐟🐟🐟)═╝
+    ╚═(🐟🐟🐟)═╝
+   ╚═(🐟🐟🐟)═╝
+  ╚═(🐟🐟🐟)═╝
+ ╚═(🐟🐟🐟)═╝
+╚═(🐟🐟🐟)═╝
+ ╚═(🐟🐟🐟)═╝
+  ╚═(🐟🐟🐟)═╝
+   ╚═(🐟🐟🐟)═╝
+    ╚═(🐟🐟🐟)═╝
+   ╚═(🐟🐟🐟)═╝
+  ╚═(🐟🐟🐟)═╝
+ ╚═(🐟🐟🐟)═╝
+╚═(🐟🐟🐟)═╝
+ ╚═(🐟🐟🐟)═╝
+  ╚═(🐟🐟🐟)═╝
+  ╚═(🐟🐟🐟)═╝
+```
+
+---
 
 ## Install
 

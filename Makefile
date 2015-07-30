@@ -1,5 +1,5 @@
 NAME = millipede-go
-SRC = cmd/millipede-go
+SRC = cmd/millipede-go cmd/millipede-http
 PACKAGES = .
 
 
@@ -44,7 +44,7 @@ fmt: $(FMT_LIST)
 
 
 $(BUILD_LIST): %_build: %_fmt %_iref
-	$(GOBUILD) -o $(NAME) ./$*
+	$(GOBUILD) -o $(notdir $*) ./$*
 $(CLEAN_LIST): %_clean:
 	$(GOCLEAN) ./$*
 $(INSTALL_LIST): %_install:

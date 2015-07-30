@@ -4,6 +4,7 @@
 
 dist/
 millipede-go
+millipede-http
 
 acc.out
 profile.out
