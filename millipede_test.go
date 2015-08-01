@@ -126,6 +126,38 @@ func ExampleMillipede_String_reverse() {
 	//   ╔⊙ ⊙╗
 }
 
+func ExampleMillipede_String_center() {
+	millipede := New(20)
+	millipede.Center = true
+
+	// FIXME: if possible make a better test
+
+	output := fmt.Sprint(millipede)
+	fmt.Println(output)
+	// Output:
+	//   ╚⊙ ⊙╝
+	// ╚═(███)═╝
+	//  ╚═(███)═╝
+	//   ╚═(███)═╝
+	//    ╚═(███)═╝
+	//     ╚═(███)═╝
+	//    ╚═(███)═╝
+	//   ╚═(███)═╝
+	//  ╚═(███)═╝
+	// ╚═(███)═╝
+	//  ╚═(███)═╝
+	//   ╚═(███)═╝
+	//    ╚═(███)═╝
+	//     ╚═(███)═╝
+	//    ╚═(███)═╝
+	//   ╚═(███)═╝
+	//  ╚═(███)═╝
+	// ╚═(███)═╝
+	//  ╚═(███)═╝
+	//   ╚═(███)═╝
+	//    ╚═(███)═╝
+}
+
 func ExampleMillipede_String_opposite() {
 	millipede := New(20)
 	millipede.Opposite = true
