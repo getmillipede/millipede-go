@@ -308,6 +308,7 @@ func New(size uint64) *Millipede {
 		Rainbow:   false,
 		Zalgo:     false,
 		Steps:     0,
+		Center:    false,
 	}
 }
 
