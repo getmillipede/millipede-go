@@ -1,8 +1,10 @@
 package main
 
+import "fmt"
+
 func Example() {
+	fmt.Println("$ millipede-go --skin=inception 25")
 	/*
-		$ millipede-go --skin=inception 25
 		    👀
 		╚═(🐛🐛🐛)═╝
 		 ╚═(🐛🐛🐛)═╝
