@@ -176,7 +176,7 @@ func (m *Millipede) String() string {
 
 	// --width support
 	if m.Width < 3 {
-		logrus.Fatalf("millipede cannot have a witch < 3")
+		logrus.Fatalf("millipede cannot have a width < 3")
 	}
 	if m.Width > 3 {
 		w := utf8.RuneCountInString(skin.Head)
