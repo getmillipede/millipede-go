@@ -1,3 +1,36 @@
+/* millipede-go binary - Print a beautiful millipede from a command line interface
+
+$ millipede-go -h
+NAME:
+   millipede-go - Print a beautiful millipede
+
+USAGE:
+   millipede-go [global options] command [command options] [arguments...]
+
+VERSION:
+   1.3.0-dev (HEAD)
+
+AUTHOR(S):
+   Millipede crew <https://github.com/getmillipede/millipede-go>
+
+COMMANDS:
+   help, hShows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --reverse, -rreverse the millipede
+   --opposite, -ogo the opposite direction
+   --chameleonthe millipede use its environment color
+   --rainbowthe millipede live with care bears
+   --zalgoinvoke the hive-mind representing chaos
+   --animatehe is alive !
+   --center, -Cmillipede in the midle
+   --skin, --template, -s, -t "default"millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)
+   --width, -w "3"millipede width
+   --curve, -c "4"millipede curve size
+   --steps "0"amount of steps done by the millipede
+   --help, -hshow help
+   --version, -vprint the version
+*/
 package main
 
 import (
