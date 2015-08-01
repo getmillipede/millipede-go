@@ -1,6 +1,4 @@
-/* millipede-go binary - Print a beautiful millipede from a command line interface
-
-$ millipede-go -h
+/*
 NAME:
    millipede-go - Print a beautiful millipede
 
