@@ -46,6 +46,10 @@ func main() {
 			Name:  "animate",
 			Usage: "he is alive !",
 		},
+		cli.BoolFlag{
+			Name:  "center, C",
+			Usage: "millipede in the midle",
+		},
 		cli.StringFlag{
 			Name:  "skin, template, s, t",
 			Usage: "millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)",
@@ -90,6 +94,7 @@ func main() {
 			Rainbow:   c.Bool("rainbow"),
 			Zalgo:     c.Bool("zalgo"),
 			Steps:     uint64(c.Int("steps")),
+			Center:    c.Bool("center"),
 		}
 		if c.Bool("animate") {
 			millipede.PadRight = true

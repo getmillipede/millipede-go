@@ -16,6 +16,7 @@ import (
 	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
 	"github.com/getmillipede/millipede-go/vendor/github.com/kortschak/zalgo"
 	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
+	"github.com/getmillipede/millipede-go/vendor/golang.org/x/crypto/ssh/terminal"
 )
 
 // Millipede defines a millipede configuration
@@ -40,6 +41,8 @@ type Millipede struct {
 	Zalgo bool
 	// Step is the amount of steps done by the millipede (useful for animations)
 	Steps uint64
+	// Center is the flag that centers the millipede in the middle of the screen
+	Center bool
 
 	// PadRight is the flag that indicates the need to add spacing on the right of the output
 	PadRight bool
@@ -205,6 +208,26 @@ func (m *Millipede) String() string {
 	if m.Reverse {
 		for i, j := 0, len(body)-1; i < j; i, j = i+1, j-1 {
 			body[i], body[j] = body[j], body[i]
+		}
+	}
+
+	// --center support
+	if m.Center {
+		w, _, err := terminal.GetSize(0)
+		if err == nil {
+			var maxWidth int
+			for _, line := range body {
+				if len(line) > maxWidth {
+					maxWidth = utf8.RuneCount([]byte(line))
+				}
+			}
+			if maxWidth < w {
+				leftMarginSize := (w / 2) - (maxWidth / 2)
+				margin := strings.Repeat(" ", leftMarginSize)
+				for idx, line := range body {
+					body[idx] = margin + line
+				}
+			}
 		}
 	}
 
