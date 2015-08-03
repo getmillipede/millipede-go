@@ -42,9 +42,13 @@ GLOBAL OPTIONS:
    --chameleon                             the millipede use its environment color
    --rainbow                               the millipede live with care bears
    --zalgo                                 invoke the hive-mind representing chaos
-   --skin, --template, -s, -t "default"    millipede skin (default, frozen, love, corporate, musician, bocal, ascii)
+   --animate                               he is alive !
+   --center, -C                            millipede in the midle
+   --skin, --template, -s, -t "default"    millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)
    --width, -w "3"                         millipede width
    --curve, -c "4"                         millipede curve size
+   --steps "0"                             amount of steps done by the millipede
+   --random                                RANDOMZ!
    --help, -h                              show help
    --version, -v                           print the version
 ```

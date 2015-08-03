@@ -33,6 +33,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"path"
 	"strconv"
@@ -101,6 +102,10 @@ func main() {
 			Usage: "amount of steps done by the millipede",
 			Value: 0,
 		},
+		cli.BoolFlag{
+			Name:  "random",
+			Usage: "RANDOMZ!",
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -114,19 +119,32 @@ func main() {
 			}
 		}
 
-		millipede := &millipede.Millipede{
-			Size:      size,
-			Reverse:   c.Bool("reverse"),
-			Skin:      c.String("skin"),
-			Opposite:  c.Bool("opposite"),
-			Width:     uint64(c.Int("width")),
-			Curve:     uint64(c.Int("curve")),
-			Chameleon: c.Bool("chameleon"),
-			Rainbow:   c.Bool("rainbow"),
-			Zalgo:     c.Bool("zalgo"),
-			Steps:     uint64(c.Int("steps")),
-			Center:    c.Bool("center"),
+		millipede := millipede.New(size)
+
+		if c.Bool("random") {
+			r := rand.New(rand.NewSource(time.Now().UnixNano()))
+			millipede.Reverse = r.Intn(2) != 0
+			millipede.Opposite = r.Intn(2) != 0
+			millipede.Chameleon = r.Intn(2) != 0
+			millipede.Rainbow = r.Intn(2) != 0
+			millipede.Zalgo = r.Intn(5) == 0
+			millipede.Center = r.Intn(2) != 0
+			millipede.Size = uint64(r.Intn(50) + 15)
+			millipede.Curve = uint64(r.Intn(7) + 2)
+			millipede.Width = uint64(r.Intn(10) + 3)
+		} else {
+			millipede.Reverse = c.Bool("reverse")
+			millipede.Opposite = c.Bool("opposite")
+			millipede.Chameleon = c.Bool("chameleon")
+			millipede.Rainbow = c.Bool("rainbow")
+			millipede.Zalgo = c.Bool("zalgo")
+			millipede.Center = c.Bool("center")
+			millipede.Skin = c.String("skin")
+			millipede.Width = uint64(c.Int("width"))
+			millipede.Curve = uint64(c.Int("curve"))
+			millipede.Steps = uint64(c.Int("steps"))
 		}
+
 		if c.Bool("animate") {
 			millipede.PadRight = true
 			fmt.Println("\033[2J")
