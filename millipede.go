@@ -161,6 +161,14 @@ func (m *Millipede) String() string {
 				Pede: "╔═(👌👌👌)═╗",
 			},
 		},
+		"human": {
+			Head: " ( ͡° ͜ʖ ͡°)",
+			Pede: "👆 ......👆",
+			Reverse: &Skin{
+				Head: " ( ͡° ͜ʖ ͡°)",
+				Pede: "👇 ......👇",
+			},
+		},
 	}
 
 	// --skin support
