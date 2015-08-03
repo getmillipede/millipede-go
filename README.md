@@ -47,7 +47,6 @@ GLOBAL OPTIONS:
    --skin, --template, -s, -t "default"    millipede skin (default, frozen, love, corporate, musician, bocal, ascii, inception, humancentipede, finger)
    --width, -w "3"                         millipede width
    --curve, -c "4"                         millipede curve size
-   --steps "0"                             amount of steps done by the millipede
    --random                                RANDOMZ!
    --help, -h                              show help
    --version, -v                           print the version

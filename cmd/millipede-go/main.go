@@ -97,11 +97,6 @@ func main() {
 			Usage: "millipede curve size",
 			Value: 4,
 		},
-		cli.IntFlag{
-			Name:  "steps",
-			Usage: "amount of steps done by the millipede",
-			Value: 0,
-		},
 		cli.BoolFlag{
 			Name:  "random",
 			Usage: "RANDOMZ!",
@@ -142,7 +137,6 @@ func main() {
 			millipede.Skin = c.String("skin")
 			millipede.Width = uint64(c.Int("width"))
 			millipede.Curve = uint64(c.Int("curve"))
-			millipede.Steps = uint64(c.Int("steps"))
 		}
 
 		if c.Bool("animate") {
