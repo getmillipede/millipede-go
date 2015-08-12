@@ -1,5 +1,5 @@
 NAME = millipede-go
-SRC = cmd/millipede-go cmd/millipede-http
+SRC = cmd/millipede-go cmd/millipede-http cmd/millipede-fuse
 PACKAGES = .
 
 

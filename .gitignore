@@ -5,6 +5,7 @@
 dist/
 millipede-go
 millipede-http
+millipede-fuse
 
 acc.out
 profile.out
