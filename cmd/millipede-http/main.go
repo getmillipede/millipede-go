@@ -10,7 +10,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	millipede := millipede.New(20)
+	millipede := millipede.New()
 	for k, v := range r.URL.Query() {
 		switch k {
 		// uint64 fields

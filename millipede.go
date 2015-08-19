@@ -2,7 +2,7 @@
 // millipede is designed to be easy to understand and write, the most simple
 // application can be written as follow:
 //   func main() {
-//     fmt.Println(millipede.New(20))
+//     fmt.Println(millipede.New())
 //   }
 package millipede
 
@@ -13,7 +13,6 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/getmillipede/millipede-go/vendor/github.com/Sirupsen/logrus"
 	"github.com/getmillipede/millipede-go/vendor/github.com/kortschak/zalgo"
 	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
 	"github.com/getmillipede/millipede-go/vendor/golang.org/x/crypto/ssh/terminal"
@@ -58,8 +57,8 @@ type Skin struct {
 	Reverse *Skin
 }
 
-// String returns a string representing a millipede
-func (m *Millipede) String() string {
+// Draw returns a string representing a millipede and an error if any
+func (m *Millipede) Draw() (string, error) {
 	paddingOffsets := []string{""}
 	if m.Curve > 0 {
 		for n := uint64(1); n < m.Curve*2; n++ {
@@ -174,7 +173,7 @@ func (m *Millipede) String() string {
 	// --skin support
 	skin := skins[m.Skin]
 	if skin.Head == "" {
-		logrus.Fatalf("no such skin: '%s'", m.Skin)
+		return "", fmt.Errorf("no such skin: '%s'", m.Skin)
 	}
 
 	// --reverse support
@@ -184,7 +183,7 @@ func (m *Millipede) String() string {
 
 	// --width support
 	if m.Width < 3 {
-		logrus.Fatalf("millipede cannot have a width < 3")
+		return "", fmt.Errorf("millipede cannot have a width < 3")
 	}
 	if m.Width > 3 {
 		w := utf8.RuneCountInString(skin.Head)
@@ -300,11 +299,25 @@ func (m *Millipede) String() string {
 		output = buf.String()
 	}
 
-	return output
+	return output, nil
 }
 
-// New returns a millipede
-func New(size uint64) *Millipede {
+// String returns a string representing a millipede and an empty string if an error occured
+func (m *Millipede) String() string {
+	string, err := m.Draw()
+	if err != nil {
+		return ""
+	}
+	return string
+}
+
+// New returns a millipede with default values
+func New() *Millipede {
+	return NewWithSize(20)
+}
+
+// NewWithSize returns a millipede with default values but a custom size
+func NewWithSize(size uint64) *Millipede {
 	return &Millipede{
 		Size:      size,
 		Reverse:   false,

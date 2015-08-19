@@ -23,7 +23,7 @@ var Usage = func() {
 var body string
 
 func init() {
-	body = millipede.New(20).String() + "\n"
+	body = millipede.New().String() + "\n"
 }
 
 func main() {
