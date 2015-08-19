@@ -79,3 +79,9 @@ dist:
 	touch tmp/bin/*
 	mv tmp/bin/* dist
 	rm -rf tmp
+
+
+.PHONY: convey
+convey:
+	go get github.com/smartystreets/goconvey
+	goconvey -cover -port=10042 -workDir="$(realpath .)" -depth=0

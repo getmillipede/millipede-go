@@ -3,6 +3,8 @@ package millipede
 import (
 	"fmt"
 	"testing"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func ExampleNew() {
@@ -424,6 +426,39 @@ func ExampleMillipede_String_curve_zero() {
 	// ╚═(███)═╝
 }
 
+func TestNew(t *testing.T) {
+	Convey("Testing New()", t, func() {
+		millipede := New(42)
+
+		So(millipede, ShouldNotBeNil)
+		So(millipede.Size, ShouldEqual, 42)
+		So(millipede.Reverse, ShouldEqual, false)
+		So(millipede.Skin, ShouldEqual, "default")
+		So(millipede.Opposite, ShouldEqual, false)
+		So(millipede.Width, ShouldEqual, 3)
+		So(millipede.Curve, ShouldEqual, 4)
+		So(millipede.Chameleon, ShouldEqual, false)
+		So(millipede.Rainbow, ShouldEqual, false)
+		So(millipede.Zalgo, ShouldEqual, false)
+		So(millipede.Steps, ShouldEqual, 0)
+		So(millipede.Center, ShouldEqual, false)
+
+		millipede = New(43)
+		So(millipede, ShouldNotBeNil)
+		So(millipede.Size, ShouldEqual, 43)
+		So(millipede.Reverse, ShouldEqual, false)
+		So(millipede.Skin, ShouldEqual, "default")
+		So(millipede.Opposite, ShouldEqual, false)
+		So(millipede.Width, ShouldEqual, 3)
+		So(millipede.Curve, ShouldEqual, 4)
+		So(millipede.Chameleon, ShouldEqual, false)
+		So(millipede.Rainbow, ShouldEqual, false)
+		So(millipede.Zalgo, ShouldEqual, false)
+		So(millipede.Steps, ShouldEqual, 0)
+		So(millipede.Center, ShouldEqual, false)
+	})
+}
+
 func TestMillipede_String_zalgo(t *testing.T) {
 	// FIXME: find a better test
 	millipede := New(20)
@@ -492,6 +527,18 @@ func ExampleMillipede_String_complex() {
 	//          ╔═(🐟🐟🐟🐟🐟🐟)═╗
 	//           ╔═(🐟🐟🐟🐟🐟🐟)═╗
 	//             ╔⊙    ⊙╗
+}
+
+func TestStringToRuneSlice(t *testing.T) {
+	Convey("Testing StringToRunSlice()", t, func() {
+		output := StringToRuneSlice("╔═(🐟🐟🐟🐟🐟🐟)═╗")
+		So(output, ShouldResemble, []rune{9556, 9552, 40, 128031, 128031, 128031, 128031, 128031, 128031, 41, 9552, 9559})
+		So(len(output), ShouldEqual, 12)
+
+		output = StringToRuneSlice("HELLO WORLD !")
+		So(output, ShouldResemble, []rune{72, 69, 76, 76, 79, 32, 87, 79, 82, 76, 68, 32, 33})
+		So(len(output), ShouldEqual, 13)
+	})
 }
 
 func ExampleStringToRuneSlice() {
