@@ -688,6 +688,63 @@ func TestMillipede_Draw_smallwidth(t *testing.T) {
 }
 */
 
+func ExampleMillipede_String_tail() {
+	millipede := New()
+	millipede.Skin = "frozen"
+	fmt.Println(millipede)
+	// Output:
+	//   ╚⊙ ⊙╝
+	// ╚═(❄❄❄)═╝
+	//  ╚═(❄❄❄)═╝
+	//   ╚═(❄❄❄)═╝
+	//    ╚═(❄❄❄)═╝
+	//     ╚═(❄❄❄)═╝
+	//    ╚═(❄❄❄)═╝
+	//   ╚═(❄❄❄)═╝
+	//  ╚═(❄❄❄)═╝
+	// ╚═(❄❄❄)═╝
+	//  ╚═(❄❄❄)═╝
+	//   ╚═(❄❄❄)═╝
+	//    ╚═(❄❄❄)═╝
+	//     ╚═(❄❄❄)═╝
+	//    ╚═(❄❄❄)═╝
+	//   ╚═(❄❄❄)═╝
+	//  ╚═(❄❄❄)═╝
+	// ╚═(❄❄❄)═╝
+	//  ╚═(❄❄❄)═╝
+	//   ╚═(❄❄❄)═╝
+	//    ╚═(❄❄❄)═╝
+	//        ❄
+}
+
+func ExampleMillipede_String_multiplepede() {
+	millipede := New()
+	millipede.Skin = "diagonals"
+	fmt.Println(millipede)
+	// Output:
+	//   ╚⊙ ⊙╝
+	// \/(███)\/
+	//  /\(███)/\
+	//   \/(███)\/
+	//    /\(███)/\
+	//     \/(███)\/
+	//    /\(███)/\
+	//   \/(███)\/
+	//  /\(███)/\
+	// \/(███)\/
+	//  /\(███)/\
+	//   \/(███)\/
+	//    /\(███)/\
+	//     \/(███)\/
+	//    /\(███)/\
+	//   \/(███)\/
+	//  /\(███)/\
+	// \/(███)\/
+	//  /\(███)/\
+	//   \/(███)\/
+	//    /\(███)/\
+}
+
 func ExampleMillipede_String_complex() {
 	millipede := NewWithSize(20)
 	millipede.Size = 42

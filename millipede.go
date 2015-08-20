@@ -100,6 +100,10 @@ func (m *Millipede) Draw() (string, error) {
 	for x := uint64(0); x < m.Size; x++ {
 		body = append(body, m.getPadding(x)+skin.NextPede())
 	}
+	tail := skin.GetTail()
+	if tail != "" {
+		body = append(body, m.getPadding(m.Size-1)+tail)
+	}
 
 	// --reverse support
 	if m.Reverse {

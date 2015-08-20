@@ -27,7 +27,7 @@ type SkinDirection struct {
 	Pede []string
 
 	// Tail is what make a millipede looking like a snake
-	//Tail string
+	Tail string
 }
 
 // Skin defines the different parts of a millipede body
@@ -73,10 +73,12 @@ func init() {
 		Up: &SkinDirection{
 			Head: "  ╚⊙ ⊙╝  ",
 			Pede: []string{"╚═(❄❄❄)═╝"},
+			Tail: "    ❄    ",
 		},
 		Down: &SkinDirection{
 			Head: "  ╔⊙ ⊙╗  ",
 			Pede: []string{"╔═(❄❄❄)═╗"},
+			Tail: "    ❄    ",
 		},
 	})
 
@@ -245,6 +247,20 @@ func (s *Skin) GetPede(i int) string {
 	return strings.TrimRight(pede, " ")
 }
 
+// GetTail returns a the tail of the millipede
+func (s *Skin) GetTail() string {
+	s.checkDirection()
+	if s.currentDirection.Tail == "" {
+		return ""
+	}
+
+	s.Width()
+
+	tail := s.currentDirection.Tail
+	tail = s.adaptWidth(tail)
+	return strings.TrimRight(tail, " ")
+}
+
 // NextPede returns GetPede with an incremental i
 func (s *Skin) NextPede() string {
 	return s.GetPede(s.nextI())
@@ -264,14 +280,12 @@ func (s *Skin) Width() int {
 	if s.maxWidth == 0 {
 		s.maxWidth = utf8.RuneCountInString(s.currentDirection.Head)
 
-		/*
-			if s.currentDirection.Tail != "" {
-				tailWidth := utf8.RuneCountInString(s.currentDirection.Tail)
-				if tailWidth > s.maxWidth {
-					s.maxWidth = tailWidth
-				}
+		if s.currentDirection.Tail != "" {
+			tailWidth := utf8.RuneCountInString(s.currentDirection.Tail)
+			if tailWidth > s.maxWidth {
+				s.maxWidth = tailWidth
 			}
-		*/
+		}
 
 		for _, pedeType := range s.currentDirection.Pede {
 			pedeLen := utf8.RuneCountInString(pedeType)
