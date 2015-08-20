@@ -45,170 +45,60 @@ type Millipede struct {
 
 	// PadRight is the flag that indicates the need to add spacing on the right of the output
 	PadRight bool
+
+	paddingOffsets []string
 }
 
-// Skin defines the different parts of a millipede body
-type Skin struct {
-	// Head is used by the millipede to think about its life
-	Head string
-	// Pede are what make this arthropod so special
-	Pede string
-	// Reverse is the reverse skin of the millipede
-	Reverse *Skin
+// getPadding returns a left padding
+func (m *Millipede) getPadding(i uint64) string {
+	if len(m.paddingOffsets) == 0 {
+		m.paddingOffsets = append(m.paddingOffsets, "")
+		//m.paddingOffsets = make([]string)
+		if m.Curve > 0 {
+			for n := uint64(1); n < m.Curve*2; n++ {
+				size := int(math.Min(float64(n%(m.Curve*2)), float64(m.Curve*2-n%(m.Curve*2))))
+				m.paddingOffsets = append(m.paddingOffsets, strings.Repeat(" ", size))
+			}
+
+			// --opposite support
+			if m.Opposite {
+				m.paddingOffsets = append(m.paddingOffsets[m.Curve:], m.paddingOffsets[:m.Curve]...)
+			}
+		}
+	}
+	if len(m.paddingOffsets) > 0 && m.Curve > 0 {
+		return m.paddingOffsets[(m.Steps+i)%(m.Curve*2)]
+	}
+	return ""
 }
 
 // Draw returns a string representing a millipede and an error if any
 func (m *Millipede) Draw() (string, error) {
-	paddingOffsets := []string{""}
-	if m.Curve > 0 {
-		for n := uint64(1); n < m.Curve*2; n++ {
-			size := int(math.Min(float64(n%(m.Curve*2)), float64(m.Curve*2-n%(m.Curve*2))))
-			paddingOffsets = append(paddingOffsets, strings.Repeat(" ", size))
-		}
-		// --opposite support
-		if m.Opposite {
-			paddingOffsets = append(paddingOffsets[m.Curve:], paddingOffsets[:m.Curve]...)
-		}
-	}
-
-	skins := map[string]Skin{
-		"default": {
-			Head: "  ╚⊙ ⊙╝  ",
-			Pede: "╚═(███)═╝",
-			Reverse: &Skin{
-				Head: "  ╔⊙ ⊙╗  ",
-				Pede: "╔═(███)═╗",
-			},
-		},
-		"frozen": {
-			Head: "  ╚⊙ ⊙╝  ",
-			Pede: "╚═(❄❄❄)═╝",
-			Reverse: &Skin{
-				Head: "  ╔⊙ ⊙╗  ",
-				Pede: "╔═(❄❄❄)═╗",
-			},
-		},
-		"corporate": {
-			Head: "  ╚⊙ ⊙╝  ",
-			Pede: "╚═(©©©)═╝",
-			Reverse: &Skin{
-				Head: "  ╔⊙ ⊙╗  ",
-				Pede: "╔═(©©©)═╗",
-			},
-		},
-		"love": {
-			Head: "  ╚⊙ ⊙╝  ",
-			Pede: "╚═(♥♥♥)═╝",
-			Reverse: &Skin{
-				Head: "  ╔⊙ ⊙╗  ",
-				Pede: "╔═(♥♥♥)═╗",
-			},
-		},
-		"musician": {
-			Head: "  ╚⊙ ⊙╝  ",
-			Pede: "╚═(♫♩♬)═╝",
-			Reverse: &Skin{
-				Head: "  ╔⊙ ⊙╗  ",
-				Pede: "╔═(♫♩♬)═╗",
-			},
-		},
-		"bocal": {
-			Head: "  ╚⊙ ⊙╝  ",
-			Pede: "╚═(🐟🐟🐟)═╝",
-			Reverse: &Skin{
-				Head: "  ╔⊙ ⊙╗  ",
-				Pede: "╔═(🐟🐟🐟)═╗",
-			},
-		},
-		"ascii": {
-			Head: "  \\o o/  ",
-			Pede: "|=(###)=|",
-			Reverse: &Skin{
-				Head: "  /o o\\  ",
-				Pede: "|=(###)=|",
-			},
-		},
-		"inception": {
-			Head: "    👀    ",
-			Pede: "╚═(🐛🐛🐛)═╝",
-			Reverse: &Skin{
-				Head: "    👀    ",
-				Pede: "╔═(🐛🐛🐛)═╗",
-			},
-		},
-		"humancentipede": {
-			Head: "    👀    ",
-			Pede: "╚═(😷😷😷)═╝",
-			Reverse: &Skin{
-				Head: "    👀    ",
-				Pede: "╔═(😷😷😷)═╗",
-			},
-		},
-		"finger": {
-			Head: "    👀    ",
-			Pede: "👈~~~  ~~~👉",
-			Reverse: &Skin{
-				Head: "    👀    ",
-				Pede: "👈~~~~~~~~👉",
-			},
-		},
-		"handy": {
-			Head: "    👀    ",
-			Pede: "╚═(👌👌👌)═╝",
-			Reverse: &Skin{
-				Head: "    👀    ",
-				Pede: "╔═(👌👌👌)═╗",
-			},
-		},
-		"human": {
-			Head: " ( ͡° ͜ʖ ͡°)",
-			Pede: "👆 ......👆",
-			Reverse: &Skin{
-				Head: " ( ͡° ͜ʖ ͡°)",
-				Pede: "👇 ......👇",
-			},
-		},
-	}
-
 	// --skin support
-	skin := skins[m.Skin]
-	if skin.Head == "" {
-		return "", fmt.Errorf("no such skin: '%s'", m.Skin)
+	skin, err := Skins.GetByName(m.Skin)
+	if err != nil {
+		return "", err
 	}
 
 	// --reverse support
-	if m.Reverse && skin.Reverse != nil && skin.Reverse.Head != "" {
-		skin = *skin.Reverse
+	if m.Reverse {
+		err = skin.SetDirection(DirectionDown)
+		if err != nil {
+			return "", err
+		}
 	}
 
 	// --width support
-	if m.Width < 3 {
-		return "", fmt.Errorf("millipede cannot have a width < 3")
-	}
-	if m.Width > 3 {
-		w := utf8.RuneCountInString(skin.Head)
-		head := StringToRuneSlice(skin.Head)
-		skin.Head = string(head[:w/2]) + strings.Repeat(string(head[w/2:w/2+1]), int(m.Width-2)) + string(head[w/2+1:])
-		pede := StringToRuneSlice(skin.Pede)
-		skin.Pede = string(pede[:w/2]) + strings.Repeat(string(pede[w/2:w/2+1]), int(m.Width-2)) + string(pede[w/2+1:])
+	err = skin.SetWidth(int(m.Width))
+	if err != nil {
+		return "", err
 	}
 
 	// build the millipede body
 	var body []string
-	if m.Curve > 0 {
-		body = []string{paddingOffsets[m.Steps%(m.Curve*2)] + strings.TrimRight(skin.Head, " ")}
-	} else {
-		body = []string{strings.TrimRight(skin.Head, " ")}
-	}
-	var x uint64
-	for x = 0; x < m.Size; x++ {
-		var line string
-		if m.Curve > 0 {
-			line = paddingOffsets[(m.Steps+x)%(m.Curve*2)] + skin.Pede
-		} else {
-			line = "" + skin.Pede
-		}
-		body = append(body, line)
+	body = []string{m.getPadding(0) + skin.GetHead()}
+	for x := uint64(0); x < m.Size; x++ {
+		body = append(body, m.getPadding(x)+skin.NextPede())
 	}
 
 	// --reverse support
@@ -333,8 +223,8 @@ func NewWithSize(size uint64) *Millipede {
 	}
 }
 
-// StringToRuneSlice converts a string to a slice of runes
-func StringToRuneSlice(input string) []rune {
+// stringToRuneSlice converts a string to a slice of runes
+func stringToRuneSlice(input string) []rune {
 	output := make([]rune, utf8.RuneCountInString(input))
 	n := 0
 	for _, r := range input {
