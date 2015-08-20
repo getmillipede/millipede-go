@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	. "github.com/smartystreets/goconvey/convey"
+	. "github.com/getmillipede/millipede-go/vendor/github.com/smartystreets/goconvey/convey"
 )
 
 func TestMillipede_Draw(t *testing.T) {
