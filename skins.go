@@ -80,6 +80,17 @@ func init() {
 		},
 	})
 
+	Skins.AddSkin("diagonals", Skin{
+		Up: &SkinDirection{
+			Head: "  ╚⊙ ⊙╝  ",
+			Pede: []string{"\\/(███)\\/", "/\\(███)/\\"},
+		},
+		Down: &SkinDirection{
+			Head: "  ╔⊙ ⊙╗  ",
+			Pede: []string{"/\\(███)/\\", "\\/(███)\\/"},
+		},
+	})
+
 	Skins.AddSkin("corporate", Skin{
 		Up: &SkinDirection{
 			Head: "  ╚⊙ ⊙╝  ",
