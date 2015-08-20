@@ -114,7 +114,7 @@ func main() {
 			}
 		}
 
-		millipede := millipede.New(size)
+		millipede := millipede.NewWithSize(size)
 
 		if c.Bool("random") {
 			r := rand.New(rand.NewSource(time.Now().UnixNano()))
