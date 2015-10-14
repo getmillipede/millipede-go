@@ -382,17 +382,37 @@ $ curl localhost:4242/\?skin=bocal
 
 ## Install
 
-Download a statically compiled binary
-
-- Go to [github.com/getmillipede/millipede-go/releases/latest](https://github.com/getmillipede/millipede-go/releases/latest)
-
----
-
-Download and build using Golang
+Install using Golang
 
 ```command
 $ go get github.com/getmillipede/millipede-go/...
 ```
+---
+
+Install git version using homebrew
+
+```console
+$ brew tap getmillipede/millipede
+$ brew install millipede-go --HEAD
+```
+
+---
+
+Install a released version using homebrew
+
+```console
+$ brew tap getmillipede/millipede
+$ brew install millipede-go
+```
+
+---
+
+Download a statically compiled binary
+
+- Go to [github.com/getmillipede/millipede-go/releases/latest](https://github.com/getmillipede/millipede-go/releases/latest)
+
+See all releases: https://github.com/getmillipede/millipede-go/releases
+
 
 ## License
 
