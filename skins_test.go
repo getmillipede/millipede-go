@@ -3,7 +3,7 @@ package millipede
 import (
 	"testing"
 
-	. "github.com/getmillipede/millipede-go/vendor/github.com/smartystreets/goconvey/convey"
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestSkin_SetDirection(t *testing.T) {

@@ -13,9 +13,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/getmillipede/millipede-go/vendor/github.com/kortschak/zalgo"
-	"github.com/getmillipede/millipede-go/vendor/github.com/mgutz/ansi"
-	"github.com/getmillipede/millipede-go/vendor/golang.org/x/crypto/ssh/terminal"
+	"github.com/kortschak/zalgo"
+	"github.com/mgutz/ansi"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 // Millipede defines a millipede configuration

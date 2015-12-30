@@ -7,11 +7,11 @@ import (
 	"log"
 	"os"
 
+	"bazil.org/fuse"
+	"bazil.org/fuse/fs"
+	_ "bazil.org/fuse/fs/fstestutil"
 	"github.com/getmillipede/millipede-go"
-	"github.com/getmillipede/millipede-go/vendor/bazil.org/fuse"
-	"github.com/getmillipede/millipede-go/vendor/bazil.org/fuse/fs"
-	_ "github.com/getmillipede/millipede-go/vendor/bazil.org/fuse/fs/fstestutil"
-	"github.com/getmillipede/millipede-go/vendor/golang.org/x/net/context"
+	"golang.org/x/net/context"
 )
 
 var Usage = func() {

@@ -39,7 +39,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/getmillipede/millipede-go/vendor/github.com/codegangsta/cli"
+	"github.com/codegangsta/cli"
 
 	"github.com/getmillipede/millipede-go"
 	"github.com/getmillipede/millipede-go/version"

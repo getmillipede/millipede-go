@@ -1,87 +1,73 @@
-NAME = millipede-go
-SRC = cmd/millipede-go cmd/millipede-http cmd/millipede-fuse
-PACKAGES = .
+# Project-specific variables
+BINARIES ?=	millipede-fuse millipede-go millipede-http
+CONVEY_PORT ?=	9042
 
 
-GOCMD ?=        go
-GOBUILD ?=      $(GOCMD) build
-GOCLEAN ?=      $(GOCMD) clean
-GOINSTALL ?=    $(GOCMD) install
-GOTEST ?=       $(GOCMD) test
-GOFMT ?=        gofmt -w
+# Common variables
+SOURCES :=	$(shell find . -name "*.go")
+COMMANDS :=	$(shell go list ./... | grep -v /vendor/ | grep /cmd/)
+PACKAGES :=	$(shell go list ./... | grep -v /vendor/ | grep -v /cmd/)
+GOENV ?=	GO15VENDOREXPERIMENT=1
+GO ?=		$(GOENV) go
+GODEP ?=	$(GOENV) godep
+USER ?=		$(shell whoami)
 
 
-BUILD_LIST = $(foreach int, $(SRC), $(int)_build)
-CLEAN_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_clean)
-INSTALL_LIST = $(foreach int, $(SRC), $(int)_install)
-IREF_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_iref)
-TEST_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_test)
-BENCH_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_bench)
-TRAVIS_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_travis)
-COVER_LIST = $(foreach int, $(PACKAGES), $(int)_cover)
-FMT_LIST = $(foreach int, $(SRC) $(PACKAGES), $(int)_fmt)
-
-
-.PHONY: $(CLEAN_LIST) $(TEST_LIST) $(FMT_LIST) $(INSTALL_LIST) $(BUILD_LIST) $(IREF_LIST) $(BENCH_LIST) $(TRAVIS_LIST) $(COVER_LIST)
-
-
-all: build
+all:	build
 
 
 .PHONY: build
-build: $(BUILD_LIST)
-clean: $(CLEAN_LIST)
-install: $(INSTALL_LIST)
-test: $(TEST_LIST)
-bench: $(BENCH_LIST)
-travis: $(TRAVIS_LIST)
-cover:
-	rm -f profile.out
-	$(MAKE) $(COVER_LIST)
-	echo "mode: set" | cat - profile.out > profile.out.tmp && mv profile.out.tmp profile.out
-iref: $(IREF_LIST)
-fmt: $(FMT_LIST)
+build:	$(BINARIES)
 
 
-$(BUILD_LIST): %_build: %_fmt %_iref
-	$(GOBUILD) -o $(notdir $*) ./$*
-$(CLEAN_LIST): %_clean:
-	$(GOCLEAN) ./$*
-$(INSTALL_LIST): %_install:
-	$(GOINSTALL) ./$*
-$(IREF_LIST): %_iref:
-	$(GOTEST) -i ./$*
-$(TEST_LIST): %_test:
-	$(GOTEST) ./$*
-$(BENCH_LIST): %_bench:
-	$(GOTEST) -bench . ./$*
-$(TRAVIS_LIST): %_travis:
-	$(GOTEST) -v ./$*
-$(COVER_LIST): %_cover:
-	$(GOTEST) -coverprofile=file-profile.out ./$*
-	if [ -f file-profile.out ]; then cat file-profile.out | grep -v "mode: set" >> profile.out || true; rm -f file-profile.out; fi
-$(FMT_LIST): %_fmt:
-	$(GOFMT) ./$*
+$(BINARIES):	$(SOURCES)
+	$(GO) build -o $@ ./cmd/$@
+
+
+.PHONY: test
+test:
+	$(GO) get -t .
+	$(GO) test -v .
+
+
+.PHONY: godep-save
+godep-save:
+	$(GODEP) save $(PACKAGES) $(COMMANDS)
+
+
+.PHONY: clean
+clean:
+	rm -f $(BINARIES)
 
 
 .PHONY: re
-re: clean all
-
-
-.PHONY: dist
-dist:
-	docker build -t $(NAME)-builder .
-	@docker rm $(NAME)-builder 2>/dev/null || true
-	mkdir -p dist
-	docker run --name=$(NAME)-builder $(NAME)-builder tar -cf - /etc/ssl > dist/ssl.tar
-	docker cp $(NAME)-builder:/go/bin tmp
-	docker rm $(NAME)-builder
-	touch tmp/bin/*
-	mv tmp/bin/* dist
-	rm -rf tmp
+re:	clean all
 
 
 .PHONY: convey
 convey:
-	go get github.com/smartystreets/goconvey
-	goconvey -cover -port=10042 -workDir="$(realpath .)" -depth=0
+	$(GO) get github.com/smartystreets/goconvey
+	goconvey -cover -port=$(CONVEY_PORT) -workDir="$(realpath .)" -depth=1
+
+
+.PHONY:	cover
+cover:	profile.out
+
+
+profile.out:	$(SOURCES)
+	rm -f $@
+	$(GO) test -covermode=count -coverpkg=. -coverprofile=$@ .
+
+
+.PHONY: docker-build
+docker-build:
+	go get github.com/laher/goxc
+	rm -rf contrib/docker/linux_386
+	for binary in $(BINARIES); do                                             \
+	  goxc -bc="linux,386" -d . -pv contrib/docker -n $$binary xc;            \
+	  mv contrib/docker/linux_386/$$binary contrib/docker/entrypoint;         \
+	  docker build -t $(USER)/$$binary contrib/docker;                        \
+	  docker run -it --rm $(USER)/$$binary || true;                           \
+	  docker inspect --type=image --format="{{ .Id }}" moul/$$binary || true; \
+	  echo "Now you can run 'docker push $(USER)/$$binary'";                  \
+	done
