@@ -15,7 +15,6 @@ import (
 
 	"github.com/kortschak/zalgo"
 	"github.com/mgutz/ansi"
-	"golang.org/x/crypto/ssh/terminal"
 )
 
 // Millipede defines a millipede configuration
@@ -114,7 +113,7 @@ func (m *Millipede) Draw() (string, error) {
 
 	// --center support
 	if m.Center {
-		w, _, err := terminal.GetSize(0)
+		w, err := getSize()
 		if err == nil {
 			var maxWidth int
 			for _, line := range body {
