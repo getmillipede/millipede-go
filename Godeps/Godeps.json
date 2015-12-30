@@ -10,9 +10,47 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "bazil.org/fuse",
+			"Rev": "6d13d4d566acc9ec77aed2bb457074d728d9128a"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.2.0-179-g0302d39",
+			"Rev": "0302d3914d2a6ad61404584cdae6e6dbc9c03599"
+		},
+		{
+			"ImportPath": "github.com/jtolds/gls",
+			"Rev": "9a4a02dbe491bef4bab3c24fd9f3087d6c4c6690"
+		},
+		{
+			"ImportPath": "github.com/kortschak/zalgo",
+			"Rev": "8c91a4a457cf5b7abdd741f1ee7f73b68a3a8212"
+		},
+		{
+			"ImportPath": "github.com/mgutz/ansi",
+			"Rev": "c286dcecd19ff979eeb73ea444e479b903f2cfcb"
+		},
+		{
+			"ImportPath": "github.com/smartystreets/assertions",
+			"Comment": "1.5.0-405-g01fedaa",
+			"Rev": "01fedaa993c0a9f9aa55111501cd7c81a49e812e"
+		},
+		{
 			"ImportPath": "github.com/smartystreets/goconvey/convey",
 			"Comment": "1.5.0-453-g5bb9e11",
 			"Rev": "5bb9e117a1a4f1a1555a4d41cd233c79b1a5209f"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh/terminal",
+			"Rev": "c8b9e6388ef638d5a8a9d865c634befdc46a6784"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "4f2fc6c1e69d41baf187332ee08fbd2b296f21ed"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "4f2fc6c1e69d41baf187332ee08fbd2b296f21ed"
 		}
 	]
 }
