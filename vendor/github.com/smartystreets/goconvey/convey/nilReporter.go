@@ -1,7 +1,7 @@
 package convey
 
 import (
-	"github.com/getmillipede/millipede-go/vendor/github.com/smartystreets/goconvey/convey/reporting"
+	"github.com/smartystreets/goconvey/convey/reporting"
 )
 
 type nilReporter struct{}
