@@ -1,5 +1,5 @@
-hash: 1bd22b7c94f78c9eccbf406e1949ba6bc484238c40db8000e608af66345cb3e8
-updated: 2017-04-10T08:08:57.808828967+02:00
+hash: ab31fc50f197e1ec360161cae1aa3b0d9fda3d6cd9f3050eef747e047e86b9c3
+updated: 2017-04-10T08:46:06.412192941+02:00
 imports:
 - name: bazil.org/fuse
   version: 6d13d4d566acc9ec77aed2bb457074d728d9128a
@@ -7,8 +7,6 @@ imports:
   - fs
   - fs/fstestutil
   - fuseutil
-- name: github.com/codegangsta/cli
-  version: 0302d3914d2a6ad61404584cdae6e6dbc9c03599
 - name: github.com/jtolds/gls
   version: 9a4a02dbe491bef4bab3c24fd9f3087d6c4c6690
 - name: github.com/kortschak/zalgo
@@ -25,6 +23,8 @@ imports:
   - convey
   - convey/gotest
   - convey/reporting
+- name: github.com/urfave/cli
+  version: 8ba6f23b6e36d03666a14bd9421f5e3efcb59aca
 - name: golang.org/x/crypto
   version: c8b9e6388ef638d5a8a9d865c634befdc46a6784
   subpackages:

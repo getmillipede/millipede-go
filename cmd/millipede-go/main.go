@@ -39,7 +39,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/codegangsta/cli"
+	"github.com/urfave/cli"
 
 	"github.com/getmillipede/millipede-go"
 	"github.com/getmillipede/millipede-go/version"
@@ -103,7 +103,7 @@ func main() {
 		},
 	}
 
-	app.Action = func(c *cli.Context) {
+	app.Action = func(c *cli.Context) error {
 		var size uint64
 		var err error
 		size = 20
@@ -152,6 +152,7 @@ func main() {
 		} else {
 			fmt.Println(millipede)
 		}
+		return nil
 	}
 	app.Run(os.Args)
 }

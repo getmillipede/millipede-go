@@ -20,12 +20,13 @@ build:	$(BINARIES)
 
 
 $(BINARIES):	$(SOURCES)
-	$(GO) build -o $@ ./cmd/$@
+	$(GO) build -i -o $@ ./cmd/$@
 
 
 .PHONY: test
 test:
-	$(GO) get -t .
+	#$(GO) get -t .
+	$(GO) test -i .
 	$(GO) test -v .
 
 
@@ -55,7 +56,7 @@ profile.out:	$(SOURCES)
 
 .PHONY: docker-build
 docker-build:
-	go get github.com/laher/goxc
+	$(GO) get github.com/laher/goxc
 	rm -rf contrib/docker/linux_386
 	for binary in $(BINARIES); do                                             \
 	  goxc -bc="linux,386" -d . -pv contrib/docker -n $$binary xc;            \
