@@ -2,7 +2,6 @@ millipede-go :bug:
 ==================
 
 [![Build Status](https://travis-ci.org/getmillipede/millipede-go.svg?branch=master)](https://travis-ci.org/getmillipede/millipede-go)
-[![Circle CI](https://img.shields.io/circleci/project/getmillipede/millipede-go.svg)](https://circleci.com/gh/getmillipede/millipede-go)
 [![GoDoc](https://godoc.org/github.com/getmillipede/millipede-go/millipede?status.svg)](https://godoc.org/github.com/getmillipede/millipede-go/millipede)
 [![Coverage Status](https://coveralls.io/repos/getmillipede/millipede-go/badge.svg?branch=master&service=github)](https://coveralls.io/github/getmillipede/millipede-go?branch=master)
 ![License](https://img.shields.io/github/license/getmillipede/millipede-go.svg)
