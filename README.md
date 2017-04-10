@@ -14,7 +14,8 @@ Golang version of [getmillipede](https://github.com/getmillipede/) with some exc
 
 - **./**: the millipede Golang API
 - [./cmd/millipede-go](https://github.com/getmillipede/millipede-go/tree/master/cmd/millipede-go): the millipede CLI
-- [./cmd/millipede-web](https://github.com/getmillipede/millipede-go/tree/master/cmd/millipede-go): the millipede web server
+- [./cmd/millipede-web](https://github.com/getmillipede/millipede-go/tree/master/cmd/millipede-web): the millipede web server
+- [./cmd/millipede-fuse](https://github.com/getmillipede/millipede-go/tree/master/cmd/millipede-fuse): the millipede file-system
 
 ## CLI Usage
 
@@ -391,8 +392,7 @@ $ go get github.com/getmillipede/millipede-go/...
 Install git version using homebrew
 
 ```console
-$ brew tap getmillipede/millipede
-$ brew install millipede-go --HEAD
+$ brew install getmillipede/millipede/millipede-go --HEAD
 ```
 
 ---
@@ -400,8 +400,7 @@ $ brew install millipede-go --HEAD
 Install a released version using homebrew
 
 ```console
-$ brew tap getmillipede/millipede
-$ brew install millipede-go
+$ brew install getmillipede/millipede/millipede-go
 ```
 
 ---
