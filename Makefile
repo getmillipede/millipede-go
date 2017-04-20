@@ -2,15 +2,12 @@
 BINARIES ?=	millipede-fuse millipede-go millipede-http
 CONVEY_PORT ?=	9042
 
-
 # Common variables
-SOURCES :=	$(shell find . -name "*.go")
-COMMANDS :=	$(shell go list ./... | grep -v /vendor/ | grep /cmd/)
-PACKAGES :=	$(shell go list ./... | grep -v /vendor/ | grep -v /cmd/)
+rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
+SOURCES :=      $(call rwildcard,./cmd/ ./pkg/,*.go) glide.lock
 GOENV ?=	GO15VENDOREXPERIMENT=1
 GO ?=		$(GOENV) go
 USER ?=		$(shell whoami)
-
 
 all:	build
 
